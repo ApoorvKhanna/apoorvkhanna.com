@@ -9,7 +9,7 @@ const CONFIG = {
   email: 'apoorv@vaaya.ai',
   socials: {
     github:   'https://github.com/ApoorvKhanna',
-    x:        'https://x.com/apoorvkhanna',
+    x:        'https://x.com/token_wala',
     linkedin: 'https://www.linkedin.com/in/apoorvkhanna',
   },
   siteRepo: 'https://github.com/ApoorvKhanna/apoorvkhanna.com',
