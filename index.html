@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apoorv Khanna</title>
+<meta name="description" content="Apoorv Khanna — builder of Vaaya, ClaudePoker and AskPaxo. A Windows XP desktop with a Winamp playing the best of 90s rock.">
+<meta property="og:title" content="Apoorv Khanna">
+<meta property="og:description" content="Vaaya · ClaudePoker · AskPaxo. Also: Winamp. Also: 90s rock.">
+<meta property="og:image" content="https://apoorvkhanna.com/wallpapers/starry-night.jpg">
+<meta property="og:url" content="https://apoorvkhanna.com">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M3 8l11-2v11H3zM16 5l13-2v14H16zM3 18h11v11L3 27zM16 18h13v14l-13-2z' fill='%23fff'/%3E%3Cpath d='M4 9l9-1.5V16H4zM17 6l11-1.7V16H17zM4 19h9v8.5L4 26zM17 19h11v10.7L17 28z' fill='%2337a'/%3E%3C/svg%3E">
+<link rel="preload" as="image" href="wallpapers/starry-night.jpg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== BOOT SCREEN ===== -->
+<div id="boot">
+  <div class="boot-logo">
+    <div class="boot-flag" aria-hidden="true">
+      <span class="r"></span><span class="g"></span><span class="b"></span><span class="y"></span>
+    </div>
+    <div class="boot-text">
+      <div class="boot-brand">Microsoft<sup>®</sup></div>
+      <div class="boot-name">Windows<span class="xp">xp</span></div>
+    </div>
+  </div>
+  <div class="boot-bar"><div class="boot-blocks"><i></i><i></i><i></i></div></div>
+  <div class="boot-hint">click anywhere to start</div>
+  <div class="boot-foot">Copyright © Microsoft Corporation, in spirit</div>
+</div>
+
+<!-- ===== DESKTOP ===== -->
+<div id="desktop">
+  <div id="wallpaper">
+    <div class="wp-layer" id="wp-a"></div>
+    <div class="wp-layer" id="wp-b"></div>
+  </div>
+  <div id="wp-caption" title="Change wallpaper"></div>
+
+  <div id="icons"></div>
+  <div id="windows"></div>
+
+  <!-- ===== WINAMP ===== -->
+  <div id="winamp" class="wa-group">
+    <!-- main window -->
+    <div class="wa-main wa-win" data-wa="main">
+      <div class="wa-title">
+        <span class="wa-title-icon"></span>
+        <span class="wa-title-text">WINAMP</span>
+        <span class="wa-title-btns">
+          <b class="wa-btn-min" data-act="min" title="Minimize"></b>
+          <b class="wa-btn-shade" data-act="shade" title="Shade"></b>
+          <b class="wa-btn-close" data-act="close" title="Close"></b>
+        </span>
+      </div>
+      <div class="wa-clutter"><i>O</i><i>A</i><i>I</i><i>D</i><i>V</i></div>
+      <div class="wa-status" id="wa-status"></div>
+      <div class="wa-time" id="wa-time"><span>0</span><span>0</span><b>:</b><span>0</span><span>0</span></div>
+      <div class="wa-vis" id="wa-vis"></div>
+      <div class="wa-marquee"><span id="wa-marquee-text">WINAMP 2.95  ***  IT REALLY WHIPS THE LLAMA'S ASS  ***  </span></div>
+      <div class="wa-kbps"><span id="wa-kbps">128</span></div>
+      <div class="wa-khz"><span id="wa-khz">44</span></div>
+      <div class="wa-labels"><i>kbps</i><i>kHz</i></div>
+      <div class="wa-channels"><span class="on">stereo</span><span>mono</span></div>
+      <div class="wa-vol" id="wa-vol"><div class="wa-vol-track"></div><div class="wa-knob"></div></div>
+      <div class="wa-bal" id="wa-bal"><div class="wa-bal-track"></div><div class="wa-knob"></div></div>
+      <div class="wa-eqpl">
+        <b class="on" id="wa-eq-btn" title="Equalizer (decorative, it's 2026)">EQ</b>
+        <b class="on" id="wa-pl-btn" title="Toggle playlist">PL</b>
+      </div>
+      <div class="wa-seek" id="wa-seek"><div class="wa-knob"></div></div>
+      <div class="wa-transport">
+        <b data-act="prev" title="Previous"><i class="g-prev"></i></b>
+        <b data-act="play" title="Play"><i class="g-play"></i></b>
+        <b data-act="pause" title="Pause"><i class="g-pause"></i></b>
+        <b data-act="stop" title="Stop"><i class="g-stop"></i></b>
+        <b data-act="next" title="Next"><i class="g-next"></i></b>
+        <b data-act="video" class="wa-eject" title="Toggle video window"><i class="g-eject"></i></b>
+      </div>
+      <div class="wa-toggles">
+        <b id="wa-shuffle" title="Shuffle">SHUFFLE</b>
+        <b id="wa-repeat" class="on" title="Repeat">REPEAT</b>
+      </div>
+    </div>
+
+    <!-- playlist -->
+    <div class="wa-pl wa-win" data-wa="pl" id="wa-pl">
+      <div class="wa-title">
+        <span class="wa-title-text">WINAMP PLAYLIST</span>
+        <span class="wa-title-btns"><b class="wa-btn-close" data-act="pl-close" title="Close playlist"></b></span>
+      </div>
+      <div class="wa-pl-list" id="wa-pl-list"></div>
+      <div class="wa-pl-foot">
+        <span class="wa-pl-btns"><b>ADD</b><b>REM</b><b>SEL</b><b>MISC</b></span>
+        <span class="wa-pl-time" id="wa-pl-time">0:00/0:00</span>
+        <span class="wa-pl-btns right"><b>LIST</b></span>
+      </div>
+    </div>
+
+    <!-- video window (the YouTube player lives here) -->
+    <div class="wa-video wa-win" data-wa="video" id="wa-video">
+      <div class="wa-title">
+        <span class="wa-title-text">NULLSOFT VIDEO</span>
+        <span class="wa-title-btns"><b class="wa-btn-close" data-act="video-close" title="Close video"></b></span>
+      </div>
+      <div class="wa-video-body"><div id="yt"></div></div>
+    </div>
+  </div>
+
+  <!-- ===== TASKBAR ===== -->
+  <div id="taskbar">
+    <button id="start-btn" aria-haspopup="true"><span class="flag"></span>start</button>
+    <div id="quicklaunch">
+      <b id="ql-desktop" title="Show Desktop"></b>
+      <b id="ql-winamp" title="Winamp"></b>
+    </div>
+    <div id="tasks"></div>
+    <div id="tray">
+      <b class="tray-vol" title="Volume" id="tray-vol"></b>
+      <b class="tray-net" title="Connected to the internet, somehow"></b>
+      <span id="clock">12:00 PM</span>
+    </div>
+  </div>
+
+  <!-- ===== START MENU ===== -->
+  <div id="startmenu" hidden>
+    <div class="sm-head"><span class="sm-avatar"></span><span class="sm-user">Apoorv Khanna</span></div>
+    <div class="sm-body">
+      <div class="sm-left" id="sm-left"></div>
+      <div class="sm-right" id="sm-right"></div>
+    </div>
+    <div class="sm-foot">
+      <b id="sm-logoff"><i class="ic-logoff"></i>Log Off</b>
+      <b id="sm-shutdown"><i class="ic-off"></i>Turn Off Computer</b>
+    </div>
+  </div>
+
+  <div id="ctxmenu" hidden></div>
+</div>
+
+<div id="shutdown" hidden><p>It is now safe to close this tab.</p><small>(or <a href="#" id="reboot">reboot</a>)</small></div>
+
+<script src="app.js"></script>
+</body>
+</html>
