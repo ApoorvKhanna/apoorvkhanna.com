@@ -89,6 +89,7 @@ const ICONS = {
   display: `<svg viewBox="0 0 48 48"><rect x="5" y="7" width="38" height="27" rx="2" fill="#d4d0c8" stroke="#555" stroke-width="2"/><rect x="8" y="10" width="32" height="21" fill="#3a6ea5"/><path d="M8 31l32-21v21z" fill="#5e94d1"/><rect x="18" y="36" width="12" height="4" fill="#888"/><rect x="13" y="40" width="22" height="3" rx="1" fill="#666"/></svg>`,
   folder: `<svg viewBox="0 0 48 48"><path d="M4 12h14l4 4h22v24H4z" fill="#f7d774" stroke="#b8901e" stroke-width="1.5"/><path d="M4 20h40v20H4z" fill="#ffe89a" stroke="#b8901e" stroke-width="1.5"/></svg>`,
   txt: `<svg viewBox="0 0 48 48"><path d="M10 4h20l8 8v32H10z" fill="#fff" stroke="#777" stroke-width="1.5"/><path d="M30 4v8h8" fill="#ddd" stroke="#777" stroke-width="1.5"/><path d="M15 20h18M15 26h18M15 32h12" stroke="#555" stroke-width="1.5"/></svg>`,
+  gta: `<svg viewBox="0 0 48 48"><defs><linearGradient id="gvc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff3cac"/><stop offset=".55" stop-color="#ff8a3d"/><stop offset="1" stop-color="#2af0d8"/></linearGradient></defs><rect x="3" y="3" width="42" height="42" rx="5" fill="url(#gvc)"/><circle cx="24" cy="26" r="11" fill="#ffe873"/><path d="M3 30h42v15H3z" fill="#1a0a2e" opacity=".85"/><path d="M13 45V27M13 27c-4-2-8-1-9 2M13 27c-1-4 2-7 5-7M13 27c3-3 8-3 10 0M13 27c-2-3-6-5-9-3" fill="none" stroke="#1a0a2e" stroke-width="2.5" stroke-linecap="round"/><path d="M36 45V29M36 29c-3-2-7-1-8 2M36 29c0-4 3-6 6-6M36 29c3-2 7-1 8 2" fill="none" stroke="#1a0a2e" stroke-width="2.5" stroke-linecap="round"/><text x="24" y="42" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="7" fill="#ff3cac" font-style="italic">VICE CITY</text></svg>`,
   off: `<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#e2471a"/><path d="M24 12v12" stroke="#fff" stroke-width="4" stroke-linecap="round"/><path d="M15 16a12 12 0 1 0 18 0" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/></svg>`,
 };
 const GLYPH = {
@@ -168,7 +169,7 @@ const WM = {
     node.style.cssText = `width:${W}px;height:${H}px;left:${Math.max(90, Math.round((innerWidth - W) / 2 - 80 + c))}px;top:${Math.max(10, Math.round((innerHeight - 30 - H) / 2 - 40 + c))}px`;
     node.innerHTML = `<div class="win-title">${ICONS[app.icon] || ''}<span class="t">${app.title}</span>
         <span class="win-btns"><b data-a="min" title="Minimize">${GLYPH.min}</b><b data-a="max" title="Maximize">${GLYPH.max}</b><b class="close" data-a="close" title="Close">${GLYPH.close}</b></span></div>
-      <div class="win-body${app.tinted ? ' tinted' : ''}"></div>${app.status ? `<div class="win-status"><span>${app.status}</span></div>` : ''}`;
+      <div class="win-body${app.tinted ? ' tinted' : ''}${app.plain ? ' plain' : ''}"></div>${app.status ? `<div class="win-status"><span>${app.status}</span></div>` : ''}`;
     const body = $('.win-body', node);
     const content = app.body();
     if (typeof content === 'string') body.innerHTML = content; else body.appendChild(content);
@@ -289,6 +290,10 @@ const APPS = {
       <div class="proj-actions" style="justify-content:center"><button class="xp-btn" data-standby>Stand By</button><button class="xp-btn primary" data-off>Turn Off</button><button class="xp-btn" data-restart>Restart</button></div>
       <div style="text-align:right;margin-top:14px"><button class="xp-btn" data-close>Cancel</button></div>`,
   },
+  gta: {
+    title: 'GTA Vice City', icon: 'gta', width: 960, height: 640, plain: true, status: 'Runs in the browser · courtesy of quenq.com · click inside the game to give it the keyboard',
+    body: () => `<iframe src="https://vc.quenq.com/" title="GTA Vice City" allow="fullscreen; autoplay; gamepad; pointer-lock" allowfullscreen loading="eager"></iframe>`,
+  },
   winamp: { title: 'Winamp', icon: 'winamp' },
   github:   { title: 'GitHub',   icon: 'github',   url: CONFIG.socials.github },
   x:        { title: 'X',        icon: 'x',        url: CONFIG.socials.x },
@@ -311,7 +316,7 @@ $('#reboot').onclick = e => { e.preventDefault(); location.reload(); };
 
 /* =========================== DESKTOP ICONS =========================== */
 const DESKTOP = [
-  'about', 'vaaya', 'claudepoker', 'askpaxo', '-', 'github', 'x', 'linkedin', 'email', '-', 'winamp', 'display', 'recycle',
+  'about', 'claudepoker', 'askpaxo', 'gta', '-', 'github', 'x', 'linkedin', 'email', '-', 'winamp', 'display', 'recycle',
 ];
 function renderIcons() {
   const box = $('#icons');
@@ -326,6 +331,19 @@ function renderIcons() {
     box.appendChild(n);
   }
   $('#desktop').addEventListener('pointerdown', e => { if (e.target === $('#desktop') || e.target.closest('#wallpaper')) document.querySelectorAll('.icon.sel').forEach(i => i.classList.remove('sel')); });
+}
+
+/* =========================== STICKY NOTE =========================== */
+function initNote() {
+  const n = $('#note');
+  const place = () => {
+    if (n.dataset.moved) return;
+    n.style.left = (isNarrow() ? Math.round((innerWidth - 170) / 2) : Math.round(innerWidth * 0.36)) + 'px';
+    n.style.top = (isNarrow() ? 150 : 40) + 'px';
+  };
+  place(); addEventListener('resize', place);
+  makeDraggable(n, n, null, () => n.dataset.moved = 1);
+  n.addEventListener('dblclick', e => { if (!e.target.closest('a')) WM.open('vaaya'); });
 }
 
 /* =========================== TASKBAR / START MENU =========================== */
@@ -350,7 +368,7 @@ const StartMenu = {
   node: $('#startmenu'), btn: $('#start-btn'),
   init() {
     const item = (id, sub, extra = '') => { const a = APPS[id]; return `<a class="sm-item ${extra}" href="${a.url || '#'}" data-id="${id}" ${a.url ? 'target="_blank" rel="noopener"' : ''}>${ICONS[a.icon]}<div><b>${a.title}</b>${sub ? `<small>${sub}</small>` : ''}</div></a>`; };
-    $('#sm-left').innerHTML = PROJECTS.map(p => item(p.id, p.tag)).join('') + '<div class="sm-sep"></div>' + item('winamp', '90s rock, on repeat') + item('about', 'Who is this guy');
+    $('#sm-left').innerHTML = PROJECTS.map(p => item(p.id, p.tag)).join('') + '<div class="sm-sep"></div>' + item('winamp', '90s rock, on repeat') + item('gta', 'Vice City, in the browser') + item('about', 'Who is this guy');
     $('#sm-right').innerHTML = item('github', '', 'bold') + item('x', '', 'bold') + item('linkedin', '', 'bold') + item('email', '', 'bold') + '<div class="sm-sep"></div>' + item('display') + item('recycle') +
       `<div class="sm-sep"></div><a class="sm-item" href="${CONFIG.siteRepo}" target="_blank" rel="noopener">${ICONS.folder}<div><b>Source of this site</b></div></a>`;
     this.node.addEventListener('click', e => {
@@ -611,6 +629,7 @@ function boot() {
 /* =========================== INIT =========================== */
 Wallpaper.init();
 renderIcons();
+initNote();
 StartMenu.init();
 initContextMenu();
 tickClock(); setInterval(tickClock, 10_000);

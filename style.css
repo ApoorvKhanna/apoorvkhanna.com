@@ -94,6 +94,27 @@ a { color: inherit; }
 .icon.sel svg { opacity: .75; }
 .icon.spacer { height: 10px; padding: 0; }
 
+/* sticky note */
+#note {
+  position: absolute; z-index: 4; width: 210px; padding: 26px 16px 14px;
+  background: linear-gradient(160deg, #fff9a8 0%, #fff27a 70%, #f7e463 100%);
+  box-shadow: 2px 6px 12px rgba(0,0,0,.35), inset 0 -30px 40px -30px rgba(160,130,0,.25);
+  transform: rotate(-2.5deg); cursor: grab; touch-action: none;
+  font: 13px/1.4 "Segoe Print", "Bradley Hand", "Comic Sans MS", "Marker Felt", cursive; color: #3a2e00;
+}
+#note:active { cursor: grabbing; }
+#note::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 14px; background: linear-gradient(to top, rgba(0,0,0,.06), transparent); }
+#note .pin {
+  position: absolute; left: 50%; top: -8px; width: 20px; height: 20px; margin-left: -10px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ff7676, #c40000 60%, #7a0000); box-shadow: 0 3px 4px rgba(0,0,0,.45);
+}
+#note .pin::after { content: ""; position: absolute; left: 9px; top: 16px; width: 2px; height: 12px; background: linear-gradient(#999, #333); }
+#note strong { display: block; font-size: 20px; margin-bottom: 4px; }
+#note p { margin: 0 0 8px; }
+#note a { display: inline-block; font-weight: 700; color: #1a4fb3; text-decoration: none; border-bottom: 2px solid rgba(26,79,179,.5); cursor: pointer; }
+#note a:hover { border-bottom-color: #1a4fb3; }
+#note small { display: block; margin-top: 8px; font-size: 11px; color: #8a7200; }
+
 /* =========================== WINDOWS =========================== */
 #windows { position: absolute; inset: 0 0 30px; pointer-events: none; }
 .win {
@@ -129,6 +150,8 @@ a { color: inherit; }
 .win-btns svg { width: 12px; height: 12px; }
 .win-body { flex: 1; overflow: auto; padding: 14px; font-size: 11px; background: #fff; user-select: text; -webkit-user-select: text; }
 .win-body.tinted { background: #ece9d8; }
+.win-body.plain { padding: 0; overflow: hidden; background: #000; }
+.win-body.plain iframe { display: block; width: 100%; height: 100%; border: 0; }
 .win-body h1 { font-size: 20px; font-weight: 700; margin: 0 0 4px; }
 .win-body h2 { font-size: 12px; margin: 14px 0 6px; color: #1a4fb3; }
 .win-body p { margin: 0 0 10px; line-height: 1.5; font-size: 12px; }
@@ -403,6 +426,7 @@ a { color: inherit; }
   #startmenu { width: 100vw; }
   .sm-body { grid-template-columns: 1fr; min-height: 0; }
   #wp-caption { display: none; }
+  #note { width: 170px; font-size: 12px; padding: 20px 12px 10px; }
   #quicklaunch { display: none; }
   .task { min-width: 60px; }
 }
