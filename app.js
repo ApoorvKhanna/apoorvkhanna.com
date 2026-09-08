@@ -417,6 +417,12 @@ function renderIcons() {
     makeIconMovable(n, id);
     }
   }
+  // Dragged positions are saved per icon id, against the layout they were dragged in.
+  // Add or remove an icon and every icon below it shifts a slot, so old coordinates
+  // land on top of their new neighbours. Drop them whenever the icon set changes.
+  const layoutSig = DESKTOP.map(g => `${g.label}:${g.ids.join(',')}`).join('|');
+  if (store.get('iconlayout') !== layoutSig) { store.set('iconpos', {}); store.set('iconlayout', layoutSig); }
+
   // restore icons the visitor dragged somewhere else last time
   const saved = store.get('iconpos', {});
   if (!isNarrow()) for (const n of document.querySelectorAll('#icons .icon')) {
