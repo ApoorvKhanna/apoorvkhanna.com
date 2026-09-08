@@ -444,11 +444,17 @@ Type <span class="hi">ai "…"</span> with anything you'd hand to an assistant. 
 find leads, write and send outreach, make ad creatives, watch competitors, scrape a site,
 make a phone call, crunch a spreadsheet. One wallet behind it, no API keys, no logins.
 
-Try these, in order — each one builds on the last:
-${this.TRY.map(t => `  <span class="hi">ai "${this.esc(t)}"</span>`).join('\n')}
+This window is a preview — it shows you what happens, it doesn't run it.
+To make it work for real, on your machine, in whatever you already use
+(Claude Code, Cursor, Codex, Claude Desktop, ChatGPT):
 
-Five commands in this demo. After that I'll show you how to get it on your own machine.
-<span class="dim">(help · clear)</span>
+  <span class="hi">npx -y @vaaya/mcp install</span>
+
+One line, browser sign-in, no keys to paste. Or start at <a href="https://vaaya.ai" target="_blank" rel="noopener">vaaya.ai</a>.
+
+Meanwhile, try these — each one builds on the last:
+${this.TRY.map(t => `  <span class="hi">ai "${this.esc(t)}"</span>`).join('\n')}
+<span class="dim">(help · clear · ${TERM_LIMIT} commands in this preview)</span>
 `;
   },
   // [matcher, what it's for, tool, cost in cents, trace lines, sample result]
@@ -518,16 +524,13 @@ Next: ai "watch Notion and tell me when they change pricing"`],
       busy = false;
       if (used >= TERM_LIMIT) {
         print(`
-── that's five ──────────────────────────────────────────────────────
-Everything you just watched runs for real from your own machine, inside whatever
-you already use — Claude Code, Cursor, Codex, Claude Desktop, ChatGPT:
+── end of the preview ───────────────────────────────────────────────
+Everything you just watched runs for real, on your machine, paid per use from one wallet:
 
-  <span class="hi">npx -y @vaaya/mcp install</span>
+  <span class="hi">npx -y @vaaya/mcp install</span>     ·     <a href="https://vaaya.ai" target="_blank" rel="noopener">vaaya.ai</a>
 
-One command. It signs you in with your browser (no keys to paste), and from then on
-your agent can do all of this on its own, paid per use from one wallet.
-Or start at <a href="https://vaaya.ai" target="_blank" rel="noopener">vaaya.ai</a>. Close and reopen this window for five more.`, 'warn');
-        inp.placeholder = 'demo over — see above';
+<span class="dim">(close and reopen this window for ${TERM_LIMIT} more)</span>`, 'warn');
+        inp.placeholder = `run npx -y @vaaya/mcp install to keep going`;
       } else { inp.disabled = false; inp.focus(); }
     });
     setTimeout(() => inp.focus(), 50);
