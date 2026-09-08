@@ -106,7 +106,8 @@ a { color: inherit; }
 .term { height: 100%; display: flex; flex-direction: column; padding: 4px 6px; background: #000; color: #c0c0c0; font: 12px/1.45 "Lucida Console", Monaco, Menlo, monospace; cursor: text; user-select: text; -webkit-user-select: text; }
 .term-out { flex: 1; margin: 0; overflow: auto; white-space: pre-wrap; word-break: break-word; font: inherit; }
 .term-out .cmd { color: #fff; margin-top: 4px; }
-.term-out .ok { color: #7fdc7f; } .term-out .warn { color: #ffd866; } .term-out .hi { color: #fff; font-weight: 700; }
+.term-out .ok { color: #7fdc7f; } .term-out .warn { color: #ffd866; } .term-out .hi { color: #fff; font-weight: 700; } .term-out .dim { color: #7a7a7a; }
+.term-out .res { margin: 4px 0 6px; color: #d8d8d8; }
 .term-out a, .win-status a { color: #7fb3ff; }
 .win-status a { color: #1a4fb3; }
 .term-line { display: flex; gap: 6px; }
