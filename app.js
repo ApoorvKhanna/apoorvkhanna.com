@@ -20,6 +20,19 @@ const CONFIG = {
   wallpaperInterval: 45_000,
 };
 
+// Pocketamp downloads. Bump `version` and the sizes when a new release ships;
+// release assets are always named Pocketamp-<version>-<arch>.dmg.
+const POCKETAMP = {
+  version: '1.1.0',
+  site: 'https://apoorvkhanna.github.io/pocketamp/',
+  repo: 'https://github.com/ApoorvKhanna/pocketamp',
+  builds: [
+    { arch: 'arm64', label: 'Apple silicon', note: 'M1 and later', size: '117 MB' },
+    { arch: 'x64',   label: 'Intel',         note: 'Intel Macs',  size: '119 MB' },
+  ],
+  dmg(b) { return `${this.repo}/releases/download/v${this.version}/Pocketamp-${this.version}-${b.arch}.dmg`; },
+};
+
 const PROJECTS = [
   {
     id: 'vaaya', name: 'Vaaya', url: 'https://vaaya.ai', icon: 'vaaya',
@@ -101,6 +114,7 @@ const ICONS = {
   linkedin: `<svg viewBox="0 0 48 48"><rect x="4" y="4" width="40" height="40" rx="6" fill="#0a66c2"/><text x="24" y="33" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="24" fill="#fff">in</text></svg>`,
   email: `<svg viewBox="0 0 48 48"><rect x="4" y="11" width="40" height="27" rx="3" fill="#fff" stroke="#6b7ea8" stroke-width="2"/><path d="M5 13l19 14 19-14" fill="#e9eefb" stroke="#6b7ea8" stroke-width="2" stroke-linejoin="round"/><path d="M5 37l14-12M43 37L29 25" fill="none" stroke="#6b7ea8" stroke-width="2"/></svg>`,
   winamp: `<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="21" fill="#f5a623" stroke="#8a5300" stroke-width="1.5"/><path d="M27 6l-12 21h8l-3 15 12-22h-8z" fill="#111"/></svg>`,
+  pocketamp: `<svg viewBox="0 0 48 48"><rect x="12" y="2" width="24" height="44" rx="4" fill="#f7f7f5" stroke="#9a9a94" stroke-width="1.5"/><rect x="15" y="5.5" width="18" height="14" rx="1.5" fill="#9bbc0f" stroke="#2a2f3a" stroke-width="1.5"/><path d="M18 10h6M18 13.5h9" stroke="#0f380f" stroke-width="1.4" stroke-linecap="round"/><path d="M16.5 16.8h15" stroke="#0f380f" stroke-width="1" opacity=".45"/><circle cx="24" cy="32.5" r="8.5" fill="#eeeeec" stroke="#c9c9c3" stroke-width="1.2"/><circle cx="24" cy="32.5" r="3.2" fill="#fdfdfc" stroke="#c9c9c3"/><g fill="#a8a8a2"><path d="M22.5 26.4h3l-1.5-1.8z"/><path d="M22.5 38.6h3l-1.5 1.8z"/><path d="M18.2 31v3l-1.8-1.5z"/><path d="M29.8 31v3l1.8-1.5z"/></g></svg>`,
   recycle: `<svg viewBox="0 0 48 48"><path d="M10 15h28l-3 27H13z" fill="#cfe3f5" fill-opacity=".85" stroke="#4a7ab5" stroke-width="2"/><rect x="8" y="10.5" width="32" height="5" rx="2" fill="#7fb0e0" stroke="#4a7ab5" stroke-width="1.5"/><path d="M18 20v18M24 20v18M30 20v18" stroke="#4a7ab5" stroke-width="2"/><path d="M19 10l2-4h6l2 4" fill="none" stroke="#4a7ab5" stroke-width="2"/><path d="M16 26l5-3-2 5M32 26l-5-3 2 5" fill="none" stroke="#3c9a3c" stroke-width="1.5"/></svg>`,
   display: `<svg viewBox="0 0 48 48"><rect x="5" y="7" width="38" height="27" rx="2" fill="#d4d0c8" stroke="#555" stroke-width="2"/><rect x="8" y="10" width="32" height="21" fill="#3a6ea5"/><path d="M8 31l32-21v21z" fill="#5e94d1"/><rect x="18" y="36" width="12" height="4" fill="#888"/><rect x="13" y="40" width="22" height="3" rx="1" fill="#666"/></svg>`,
   folder: `<svg viewBox="0 0 48 48"><path d="M4 12h14l4 4h22v24H4z" fill="#f7d774" stroke="#b8901e" stroke-width="1.5"/><path d="M4 20h40v20H4z" fill="#ffe89a" stroke="#b8901e" stroke-width="1.5"/></svg>`,
@@ -320,6 +334,23 @@ const APPS = {
     body: () => `<iframe src="https://vc.quenq.com/" title="GTA Vice City" allow="fullscreen; autoplay; gamepad; pointer-lock" allowfullscreen loading="eager"></iframe>`,
   },
   winamp: { title: 'Winamp', icon: 'winamp' },
+  pocketamp: {
+    title: 'Pocketamp', icon: 'pocketamp', width: 560, height: 560,
+    status: `v${POCKETAMP.version} · free, MIT · macOS 12 and later · <a href="${POCKETAMP.site}" target="_blank" rel="noopener">pocketamp site</a>`,
+    body: () => `<div class="proj-head">${ICONS.pocketamp}<div><h1>Pocketamp</h1><div class="tag">Nostalgia in your pocket.</div></div></div>
+      <p>An iPod for your Mac. Paste a YouTube playlist, press play, and the click wheel comes back — scroll the tracks, watch the little screen, change the skin when you miss a different device you owned.</p>
+      <p>Free, open source, and it never asks you to sign in to anything.</p>
+      <div class="proj-actions">${POCKETAMP.builds.map((b, i) => `<a class="xp-btn${i ? '' : ' primary'}" href="${POCKETAMP.dmg(b)}">Download for ${b.label}<small>${b.note} · ${b.size}</small></a>`).join('')}</div>
+      <h2>Getting it running</h2>
+      <ol class="pa-steps">
+        <li>Open the .dmg, drag Pocketamp to Applications.</li>
+        <li>First launch only: System Settings → Privacy &amp; Security → <b>Open Anyway</b>.</li>
+        <li>Paste a YouTube playlist URL into the screen, press enter.</li>
+      </ol>
+      <h2>Controls</h2>
+      <div class="pa-keys"><kbd>space</kbd><span>play / pause</span><kbd>←</kbd><span>previous</span><kbd>→</kbd><span>next</span><kbd>S</kbd><span>change skin</span><kbd>P</kbd><span>playlist</span></div>
+      <div class="proj-actions"><a class="xp-btn" href="${POCKETAMP.site}" target="_blank" rel="noopener">Product page</a><a class="xp-btn" href="${POCKETAMP.repo}" target="_blank" rel="noopener">Source on GitHub</a><a class="xp-btn" href="${POCKETAMP.repo}/releases" target="_blank" rel="noopener">All releases</a></div>`,
+  },
   terminal: {
     title: 'Terminal', icon: 'terminal', width: 760, height: 480, plain: true,
     status: `demo · <b class="term-count">0</b>/${TERM_LIMIT} commands · powered by <a href="https://vaaya.ai" target="_blank" rel="noopener">vaaya.ai</a>`,
@@ -369,7 +400,7 @@ $('#reboot').onclick = e => { e.preventDefault(); location.reload(); };
 const DESKTOP = [
   { label: 'Work',    ids: ['about', 'claudepoker', 'askpaxo', 'saul', 'crayon', 'calendar'] },
   { label: 'Socials', ids: ['github', 'x', 'linkedin', 'medium', 'instagram', 'email'] },
-  { label: 'Goodies', ids: ['winamp', 'gta', 'notepad', 'terminal', 'display', 'recycle'] },
+  { label: 'Goodies', ids: ['winamp', 'pocketamp', 'gta', 'notepad', 'terminal', 'display', 'recycle'] },
 ];
 function renderIcons() {
   for (const g of DESKTOP) {
@@ -582,7 +613,7 @@ const StartMenu = {
   node: $('#startmenu'), btn: $('#start-btn'),
   init() {
     const item = (id, sub, extra = '') => { const a = APPS[id]; return `<a class="sm-item ${extra}" href="${a.url || '#'}" data-id="${id}" ${a.url ? 'target="_blank" rel="noopener"' : ''}>${ICONS[a.icon]}<div><b>${a.label || a.title}</b>${sub ? `<small>${sub}</small>` : ''}</div></a>`; };
-    $('#sm-left').innerHTML = PROJECTS.map(p => item(p.id, p.tag)).join('') + '<div class="sm-sep"></div>' + item('winamp', '90s rock, on repeat') + item('gta', 'Vice City, in the browser') + item('notepad', 'Scratch space') + item('terminal', 'Type ai "…" and watch') + item('about', 'Who is this guy') + '<div class="sm-sep"></div>' + item('calendar', 'Book 30 mins — how AI can help your company');
+    $('#sm-left').innerHTML = PROJECTS.map(p => item(p.id, p.tag)).join('') + '<div class="sm-sep"></div>' + item('winamp', '90s rock, on repeat') + item('pocketamp', 'An iPod for your Mac — free download') + item('gta', 'Vice City, in the browser') + item('notepad', 'Scratch space') + item('terminal', 'Type ai "…" and watch') + item('about', 'Who is this guy') + '<div class="sm-sep"></div>' + item('calendar', 'Book 30 mins — how AI can help your company');
     $('#sm-right').innerHTML = item('github', '', 'bold') + item('x', '', 'bold') + item('linkedin', '', 'bold') + item('medium', '', 'bold') + item('instagram', '', 'bold') + item('email', '', 'bold') + '<div class="sm-sep"></div>' + item('display') + item('arrange') + item('recycle') +
       `<div class="sm-sep"></div><a class="sm-item" href="${CONFIG.siteRepo}" target="_blank" rel="noopener">${ICONS.folder}<div><b>Source of this site</b></div></a>`;
     this.node.addEventListener('click', e => {
