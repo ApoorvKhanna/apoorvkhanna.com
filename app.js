@@ -375,7 +375,7 @@ function initNote() {
   const place = () => {
     if (n.dataset.moved) return;
     n.style.left = (isNarrow() ? Math.round((innerWidth - 170) / 2) : Math.round(innerWidth * 0.42)) + 'px';
-    n.style.top = (isNarrow() ? 150 : 40) + 'px';
+    n.style.top = (isNarrow() ? $('#icons').offsetHeight + 24 : 40) + 'px';
   };
   place(); addEventListener('resize', place);
   makeDraggable(n, n, null, () => n.dataset.moved = 1);
@@ -510,7 +510,7 @@ const Winamp = {
     this.group.style.setProperty('--wa-scale', scale.toFixed(3));
     if (keepPos && this.group.dataset.placed) return;
     this.group.style.left = (narrow ? 8 : Math.max(8, innerWidth - 275 * scale - 28)) + 'px';
-    this.group.style.top = (narrow ? 250 : 24) + 'px';
+    this.group.style.top = (narrow ? $('#note').offsetTop + $('#note').offsetHeight + 16 : 24) + 'px';
     this.group.dataset.placed = 1;
   },
   taskTitle() { const t = PLAYLIST[this.idx]; return this.playing ? `${t.artist} - ${t.title}` : 'Winamp'; },
