@@ -634,7 +634,6 @@ const StartMenu = {
     $('#sm-shutdown').onclick = () => { this.toggle(false); WM.open('shutdown'); };
     $('#ql-desktop').onclick = () => WM.minimizeAll();
     $('#ql-winamp').onclick = () => Winamp.show();
-    $('#tray-vol').onclick = () => Winamp.toggleMute();
   },
   toggle(force) {
     const show = force ?? this.node.hidden;
@@ -646,6 +645,55 @@ function tickClock() {
   const d = new Date(); let h = d.getHours(); const ap = h >= 12 ? 'PM' : 'AM'; h = h % 12 || 12;
   $('#clock').textContent = `${h}:${String(d.getMinutes()).padStart(2, '0')} ${ap}`;
 }
+
+/* =========================== TRAY FLYOUTS =========================== */
+// The volume icon and the clock each open a small XP-style panel above the taskbar.
+const Tray = {
+  MONTHS: ['January','February','March','April','May','June','July','August','September','October','November','December'],
+  DOW: ['S','M','T','W','T','F','S'],
+  shown: new Date(),
+  init() {
+    const vol = $('#volpop'), cal = $('#calpop');
+    const range = $('#vol-range'), mute = $('#vol-mute');
+
+    $('#tray-vol').onclick = e => { e.stopPropagation(); this.toggle(vol, cal); };
+    $('#clock').onclick = e => { e.stopPropagation(); this.shown = new Date(); this.paint(); this.toggle(cal, vol); };
+    $('#clock').addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); $('#clock').click(); } });
+
+    range.oninput = () => { Winamp.setVolume(+range.value); mute.checked = Winamp.muted; };
+    mute.onchange = () => { if (mute.checked !== Winamp.muted) Winamp.toggleMute(); mute.checked = Winamp.muted; };
+    $('#cal-prev').onclick = () => this.step(-1);
+    $('#cal-next').onclick = () => this.step(1);
+
+    // clicking anywhere else, or Escape, closes both
+    document.addEventListener('pointerdown', e => { if (!e.target.closest('.tray-pop, #tray')) this.closeAll(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') this.closeAll(); });
+    this.paint();
+  },
+  toggle(open, other) {
+    other.hidden = true;
+    const show = open.hidden;
+    open.hidden = !show;
+    if (show && open.id === 'volpop') { $('#vol-range').value = Winamp.vol; $('#vol-mute').checked = Winamp.muted; }
+  },
+  closeAll() { $('#volpop').hidden = true; $('#calpop').hidden = true; },
+  step(n) { this.shown = new Date(this.shown.getFullYear(), this.shown.getMonth() + n, 1); this.paint(); },
+  paint() {
+    const now = new Date(), y = this.shown.getFullYear(), m = this.shown.getMonth();
+    $('#cal-title').textContent = `${this.MONTHS[m]} ${y}`;
+    const first = new Date(y, m, 1).getDay(), days = new Date(y, m + 1, 0).getDate(), prev = new Date(y, m, 0).getDate();
+    let html = this.DOW.map(d => `<span class="dow">${d}</span>`).join('');
+    for (let i = first - 1; i >= 0; i--) html += `<span class="pad">${prev - i}</span>`;
+    for (let d = 1; d <= days; d++) {
+      const today = d === now.getDate() && m === now.getMonth() && y === now.getFullYear();
+      html += `<span class="${today ? 'today' : ''}">${d}</span>`;
+    }
+    const tail = (7 - ((first + days) % 7)) % 7;
+    for (let d = 1; d <= tail; d++) html += `<span class="pad">${d}</span>`;
+    $('#cal-grid').innerHTML = html;
+    $('#cal-foot').textContent = now.toLocaleDateString(undefined, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+  },
+};
 
 function initContextMenu() {
   const m = $('#ctxmenu');
@@ -884,6 +932,7 @@ initNote();
 StartMenu.init();
 initContextMenu();
 tickClock(); setInterval(tickClock, 10_000);
+Tray.init();
 Winamp.init();
 Taskbar.render();
 boot();

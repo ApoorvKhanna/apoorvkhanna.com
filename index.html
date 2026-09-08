@@ -130,8 +130,24 @@
     <div id="tray">
       <b class="tray-vol" title="Volume" id="tray-vol"></b>
       <b class="tray-net" title="Connected to the internet, somehow"></b>
-      <span id="clock">12:00 PM</span>
+      <span id="clock" role="button" tabindex="0" title="Date and time">12:00 PM</span>
     </div>
+  </div>
+
+  <!-- ===== TRAY FLYOUTS ===== -->
+  <div id="volpop" class="tray-pop" hidden>
+    <h4>Volume</h4>
+    <input type="range" id="vol-range" min="0" max="100" step="1" value="80" aria-label="Volume">
+    <label class="vol-mute"><input type="checkbox" id="vol-mute"> Mute</label>
+  </div>
+  <div id="calpop" class="tray-pop cal" hidden>
+    <div class="cal-top">
+      <button id="cal-prev" title="Previous month" aria-label="Previous month">&lsaquo;</button>
+      <b id="cal-title">Month</b>
+      <button id="cal-next" title="Next month" aria-label="Next month">&rsaquo;</button>
+    </div>
+    <div class="cal-grid" id="cal-grid"></div>
+    <div class="cal-foot" id="cal-foot"></div>
   </div>
 
   <!-- ===== START MENU ===== -->
