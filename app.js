@@ -23,9 +23,9 @@ const CONFIG = {
 const PROJECTS = [
   {
     id: 'vaaya', name: 'Vaaya', url: 'https://vaaya.ai', icon: 'vaaya',
-    tag: 'The gateway between AI agents and the outside world.',
-    body: `<p>Vaaya gives an AI agent one prepaid wallet and one skill, and in return it can do everything it couldn't do on its own: generate images, video and audio; search, scrape and crawl the web; parse documents; run code in sandboxes; drive a browser; send email; make phone calls; find and enrich leads; and pull live data past its training cutoff.</p>
-      <p>No API keys to hand out, no accounts to create per service. Consult, get the exact call, run it, pay per use.</p>
+    tag: 'Credit for your agents.',
+    body: `<p>Vaaya is credit for your agents. You top up one balance; your agents spend it on whatever a job needs — generating images, video and audio; searching, scraping and crawling the web; parsing documents; running code in sandboxes; driving a browser; sending email; making phone calls; finding and enriching leads; pulling live data past their training cutoff.</p>
+      <p>No API keys to hand out, no account to open per service, no subscription to any of them. They ask what a task needs, they get the exact call, they run it, you pay for that call.</p>
       <ul><li>Works from Claude Code, Codex, ChatGPT and any MCP client</li><li>Recipes for full GTM loops, product demos and market research</li><li>One bill, every service</li></ul>`,
   },
   {
@@ -272,7 +272,7 @@ const APPS = {
         <img class="avatar" src="photo.jpg" alt="${CONFIG.name}" width="512" height="512">
         <h1>${CONFIG.name}</h1>
         <p>I build software for AI agents, and for the people who put them to work.</p>
-        <p>Right now that's <a href="#" data-open="vaaya">Vaaya</a> — a gateway that lets any agent reach services on the internet it couldn't use on its own — plus <a href="#" data-open="claudepoker">ClaudePoker</a>, where agents play each other at Hold'em, and <a href="#" data-open="askpaxo">AskPaxo</a>, which finds you a flat so you don't have to.</p>
+        <p>Right now that's <a href="#" data-open="vaaya">Vaaya</a> — credit for your agents, so they can buy the services they need without you handing out API keys — plus <a href="#" data-open="claudepoker">ClaudePoker</a>, where agents play each other at Hold'em, and <a href="#" data-open="askpaxo">AskPaxo</a>, which finds you a flat so you don't have to.</p>
         <h2>Why does this look like 2003?</h2>
         <p>Because Windows XP and Winamp were the last time computers were unambiguously fun. The paintings rotate; the music is the best of the 90s; the Recycle Bin is not empty.</p>
         <h2>Say hi</h2>
@@ -442,7 +442,7 @@ const Terminal = {
 
 Type <span class="hi">ai "…"</span> with anything you'd hand to an assistant. It picks the right tool and runs it:
 find leads, write and send outreach, make ad creatives, watch competitors, scrape a site,
-make a phone call, crunch a spreadsheet. One wallet behind it, no API keys, no logins.
+make a phone call, crunch a spreadsheet. It runs on credit you top up — no API keys, no logins.
 
 This window is a preview — it shows you what happens, it doesn't run it.
 To make it work for real, on your machine, in whatever you already use
@@ -525,7 +525,7 @@ Next: ai "watch Notion and tell me when they change pricing"`],
       if (used >= TERM_LIMIT) {
         print(`
 ── end of the preview ───────────────────────────────────────────────
-Everything you just watched runs for real, on your machine, paid per use from one wallet:
+Everything you just watched runs for real, on your machine, off credit you top up once:
 
   <span class="hi">npx -y @vaaya/mcp install</span>     ·     <a href="https://vaaya.ai" target="_blank" rel="noopener">vaaya.ai</a>
 
