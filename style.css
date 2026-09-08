@@ -161,6 +161,10 @@ a { color: inherit; }
 .np-menu span:hover { background: #316ac5; color: #fff; }
 .np { flex: 1; width: 100%; resize: none; border: 0; outline: 0; padding: 4px; margin: 0; background: #fff; color: #000; font: 13px/1.35 "Lucida Console", Monaco, Menlo, monospace; white-space: pre; overflow: auto; }
 .win-body.plain iframe { display: block; width: 100%; height: 100%; border: 0; }
+.win-body.plain:has(.cal-head) { display: flex; flex-direction: column; background: #fff; }
+.cal-head { flex: none; padding: 10px 14px; font-size: 12px; background: #ece9d8; border-bottom: 1px solid #aca899; }
+.cal-head strong { display: block; font-size: 14px; margin-bottom: 2px; }
+.win-body.plain:has(.cal-head) iframe { flex: 1; }
 .win-body h1 { font-size: 20px; font-weight: 700; margin: 0 0 4px; }
 .win-body h2 { font-size: 12px; margin: 14px 0 6px; color: #1a4fb3; }
 .win-body p { margin: 0 0 10px; line-height: 1.5; font-size: 12px; }
@@ -192,7 +196,7 @@ a { color: inherit; }
 .explorer-side .box a { display: block; padding: 3px 8px; color: #215dc6; text-decoration: none; }
 .explorer-side .box a:hover { text-decoration: underline; color: #4c8ce5; }
 .explorer-main { padding: 16px 18px; overflow: auto; background: #fff; }
-.explorer-main .avatar { float: right; width: 64px; height: 64px; margin: 0 0 8px 12px; }
+.explorer-main .avatar { float: right; width: 128px; height: 128px; margin: 0 0 10px 16px; border: 1px solid #aca899; padding: 3px; background: #fff; box-shadow: 2px 2px 4px rgba(0,0,0,.2); }
 
 /* display properties */
 .dp-monitor { width: 176px; height: 136px; margin: 0 auto 10px; position: relative; }

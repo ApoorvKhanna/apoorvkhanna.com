@@ -14,6 +14,7 @@ const CONFIG = {
     medium:   'https://medium.com/@apoorvkhanna',
     instagram:'https://www.instagram.com/apoorvkhanna/',
   },
+  calendar: 'https://cal.com/apoorv-vaaya/30min',
   siteRepo: 'https://github.com/ApoorvKhanna/apoorvkhanna.com',
   wallpaperInterval: 45_000,
 };
@@ -93,7 +94,7 @@ const ICONS = {
   vaaya: `<svg viewBox="0 0 48 48"><defs><linearGradient id="gv" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8b6cff"/><stop offset="1" stop-color="#2a1b8f"/></linearGradient></defs><rect x="4" y="4" width="40" height="40" rx="10" fill="url(#gv)"/><path d="M14 15l10 19 10-19" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="37" r="2.6" fill="#ffd166"/></svg>`,
   claudepoker: `<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="21" fill="#c8102e"/><circle cx="24" cy="24" r="19" fill="none" stroke="#fff" stroke-width="5" stroke-dasharray="7.5 7.4"/><circle cx="24" cy="24" r="13.5" fill="#fff"/><path d="M24 13.5c-4 6-8.5 8-8.5 12.5a4.6 4.6 0 0 0 7.6 3.3c-.3 2.2-1 3.6-2.1 4.4h6c-1.1-.8-1.8-2.2-2.1-4.4a4.6 4.6 0 0 0 7.6-3.3c0-4.5-4.5-6.5-8.5-12.5z" fill="#111"/></svg>`,
   askpaxo: `<svg viewBox="0 0 48 48"><path d="M6 23L24 8l18 15" fill="none" stroke="#1d4ed8" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/><path d="M11 21v19h26V21" fill="#e6efff" stroke="#1d4ed8" stroke-width="3"/><rect x="20" y="27" width="8" height="13" fill="#1d4ed8"/><circle cx="34" cy="33" r="7" fill="#fff" stroke="#f59e0b" stroke-width="3"/><path d="M39 38l6 6" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/></svg>`,
-  about: `<svg viewBox="0 0 48 48"><rect x="4" y="4" width="40" height="40" rx="3" fill="#e8b76a" stroke="#fff" stroke-width="2"/><circle cx="24" cy="19" r="8" fill="#fff2d8"/><path d="M9 44c0-11 7-15 15-15s15 4 15 15z" fill="#fff2d8"/></svg>`,
+  about: `<svg viewBox="0 0 48 48"><defs><clipPath id="gab"><circle cx="24" cy="24" r="21"/></clipPath></defs><circle cx="24" cy="24" r="22" fill="#fff"/><image href="photo.jpg" x="3" y="3" width="42" height="42" clip-path="url(#gab)" preserveAspectRatio="xMidYMid slice"/><circle cx="24" cy="24" r="21.5" fill="none" stroke="#fff" stroke-width="1.5"/></svg>`,
   github: `<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#fff"/><g transform="translate(9 9) scale(1.25)"><path fill="#1b1f23" d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></g></svg>`,
   x: `<svg viewBox="0 0 48 48"><rect x="4" y="4" width="40" height="40" rx="9" fill="#000"/><path fill="#fff" d="M28.6 13h4.3l-9.4 10.7L34.5 38h-8.6l-6.8-8.8-7.7 8.8h-4.3l10-11.5L6.5 13h8.8l6.1 8.1zm-1.5 22.4h2.4L14.2 15.5h-2.6z"/></svg>`,
   linkedin: `<svg viewBox="0 0 48 48"><rect x="4" y="4" width="40" height="40" rx="6" fill="#0a66c2"/><text x="24" y="33" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="24" fill="#fff">in</text></svg>`,
@@ -107,6 +108,7 @@ const ICONS = {
   medium: `<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#000"/><ellipse cx="18" cy="24" rx="8" ry="9" fill="#fff"/><ellipse cx="31" cy="24" rx="3.6" ry="8.5" fill="#fff"/><ellipse cx="37.5" cy="24" rx="1.5" ry="7.5" fill="#fff"/></svg>`,
   instagram: `<svg viewBox="0 0 48 48"><defs><radialGradient id="gig" cx=".3" cy="1.1" r="1.2"><stop offset="0" stop-color="#fd5"/><stop offset=".45" stop-color="#ff543e"/><stop offset="1" stop-color="#c837ab"/></radialGradient></defs><rect x="4" y="4" width="40" height="40" rx="11" fill="url(#gig)"/><rect x="11.5" y="11.5" width="25" height="25" rx="7" fill="none" stroke="#fff" stroke-width="3"/><circle cx="24" cy="24" r="6" fill="none" stroke="#fff" stroke-width="3"/><circle cx="31.5" cy="16.5" r="1.8" fill="#fff"/></svg>`,
   notepad: `<svg viewBox="0 0 48 48"><path d="M10 5h22l9 9v29H10z" fill="#fff" stroke="#6b7a8f" stroke-width="1.5"/><path d="M32 5v9h9" fill="#dfe6f0" stroke="#6b7a8f" stroke-width="1.5"/><path d="M15 19h18M15 24h18M15 29h18M15 34h12" stroke="#4c6ea8" stroke-width="1.6"/><rect x="8" y="3" width="10" height="7" rx="1.5" fill="#3d7fd6" stroke="#1f4f96"/><rect x="8" y="12" width="10" height="7" rx="1.5" fill="#3d7fd6" stroke="#1f4f96"/></svg>`,
+  calendar: `<svg viewBox="0 0 48 48"><rect x="5" y="8" width="38" height="36" rx="3" fill="#fff" stroke="#6b7a8f" stroke-width="1.5"/><path d="M5 11a3 3 0 0 1 3-3h32a3 3 0 0 1 3 3v8H5z" fill="#2f63c9"/><rect x="12" y="4" width="4" height="9" rx="1.5" fill="#444"/><rect x="32" y="4" width="4" height="9" rx="1.5" fill="#444"/><text x="24" y="38" text-anchor="middle" font-family="Tahoma, Arial, sans-serif" font-weight="700" font-size="17" fill="#1a1a1a">30</text><text x="24" y="17" text-anchor="middle" font-family="Tahoma, Arial, sans-serif" font-size="6.5" fill="#fff">MINUTES</text></svg>`,
   saul: `<svg viewBox="0 0 48 48"><rect x="3" y="3" width="42" height="42" rx="6" fill="#f5c400"/><rect x="3" y="3" width="42" height="42" rx="6" fill="none" stroke="#b58900" stroke-width="1.5"/><path d="M14 13c-3 1-5 4-3 9 3 8 9 13 15 15 5 2 8 0 9-3l-5-4-4 2c-4-2-7-5-9-9l2-4z" fill="#111"/><text x="24" y="43" text-anchor="middle" font-family="Impact, Arial Black, sans-serif" font-size="7" fill="#b40000">BETTER CALL</text></svg>`,
   crayon: `<svg viewBox="0 0 48 48"><g transform="rotate(45 24 24)"><path d="M19 4h10l0 6H19z" fill="#e0402a"/><path d="M24 -2l5 6H19z" fill="#f6b19e"/><rect x="18" y="10" width="12" height="30" rx="1" fill="#e0402a"/><rect x="18" y="14" width="12" height="20" fill="#f1e2b8"/><rect x="18" y="14" width="12" height="3" fill="#2b2b2b"/><rect x="18" y="31" width="12" height="3" fill="#2b2b2b"/><rect x="18" y="40" width="12" height="4" fill="#c33320"/></g></svg>`,
   off: `<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#e2471a"/><path d="M24 12v12" stroke="#fff" stroke-width="4" stroke-linecap="round"/><path d="M15 16a12 12 0 1 0 18 0" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/></svg>`,
@@ -264,7 +266,7 @@ const APPS = {
         <div class="box"><h3>Details</h3><a href="#" data-open="winamp">Now playing</a><a href="#" data-open="display">Wallpaper</a></div>
       </div>
       <div class="explorer-main">
-        <svg class="avatar" viewBox="0 0 48 48">${ICONS.about.replace(/<\/?svg[^>]*>/g, '')}</svg>
+        <img class="avatar" src="photo.jpg" alt="${CONFIG.name}" width="512" height="512">
         <h1>${CONFIG.name}</h1>
         <p>I build software for AI agents, and for the people who put them to work.</p>
         <p>Right now that's <a href="#" data-open="vaaya">Vaaya</a> — a gateway that lets any agent reach services on the internet it couldn't use on its own — plus <a href="#" data-open="claudepoker">ClaudePoker</a>, where agents play each other at Hold'em, and <a href="#" data-open="askpaxo">AskPaxo</a>, which finds you a flat so you don't have to.</p>
@@ -272,6 +274,7 @@ const APPS = {
         <p>Because Windows XP and Winamp were the last time computers were unambiguously fun. The paintings rotate; the music is the best of the 90s; the Recycle Bin is not empty.</p>
         <h2>Say hi</h2>
         <p><a href="mailto:${CONFIG.email}">${CONFIG.email}</a></p>
+        <p><a href="#" data-open="calendar">Book 30 minutes</a> to understand how AI can help your company.</p>
       </div></div>`,
   },
   display: {
@@ -314,6 +317,12 @@ const APPS = {
     body: () => `<iframe src="https://vc.quenq.com/" title="GTA Vice City" allow="fullscreen; autoplay; gamepad; pointer-lock" allowfullscreen loading="eager"></iframe>`,
   },
   winamp: { title: 'Winamp', icon: 'winamp' },
+  calendar: {
+    title: 'Book a call', icon: 'calendar', width: 820, height: 640, plain: true,
+    status: `Free, 30 minutes, on Google Meet · <a href="${CONFIG.calendar}" target="_blank" rel="noopener">open in cal.com</a>`,
+    body: () => `<div class="cal-head"><strong>Book 30 minutes to understand how AI can help your company.</strong> Pick a slot below — no prep needed, bring the problem.</div>
+      <iframe src="${CONFIG.calendar}?embed=true&layout=month_view" title="Book a 30 minute call" allow="payment" loading="eager"></iframe>`,
+  },
   notepad: {
     title: 'Untitled - Notepad', label: 'Notepad', icon: 'notepad', width: 520, height: 400, status: 'Saved in this browser only',
     body: () => `<div class="np-menu"><span>File</span><span>Edit</span><span>Format</span><span>View</span><span>Help</span></div>
@@ -348,7 +357,7 @@ $('#reboot').onclick = e => { e.preventDefault(); location.reload(); };
 
 /* =========================== DESKTOP ICONS =========================== */
 const DESKTOP = [
-  { label: 'Work',    ids: ['about', 'claudepoker', 'askpaxo', 'saul', 'crayon'] },
+  { label: 'Work',    ids: ['about', 'claudepoker', 'askpaxo', 'saul', 'crayon', 'calendar'] },
   { label: 'Socials', ids: ['github', 'x', 'linkedin', 'medium', 'instagram', 'email'] },
   { label: 'Goodies', ids: ['winamp', 'gta', 'notepad', 'display', 'recycle'] },
 ];
@@ -404,7 +413,7 @@ const StartMenu = {
   node: $('#startmenu'), btn: $('#start-btn'),
   init() {
     const item = (id, sub, extra = '') => { const a = APPS[id]; return `<a class="sm-item ${extra}" href="${a.url || '#'}" data-id="${id}" ${a.url ? 'target="_blank" rel="noopener"' : ''}>${ICONS[a.icon]}<div><b>${a.label || a.title}</b>${sub ? `<small>${sub}</small>` : ''}</div></a>`; };
-    $('#sm-left').innerHTML = PROJECTS.map(p => item(p.id, p.tag)).join('') + '<div class="sm-sep"></div>' + item('winamp', '90s rock, on repeat') + item('gta', 'Vice City, in the browser') + item('notepad', 'Scratch space') + item('about', 'Who is this guy');
+    $('#sm-left').innerHTML = PROJECTS.map(p => item(p.id, p.tag)).join('') + '<div class="sm-sep"></div>' + item('winamp', '90s rock, on repeat') + item('gta', 'Vice City, in the browser') + item('notepad', 'Scratch space') + item('about', 'Who is this guy') + '<div class="sm-sep"></div>' + item('calendar', 'Book 30 mins — how AI can help your company');
     $('#sm-right').innerHTML = item('github', '', 'bold') + item('x', '', 'bold') + item('linkedin', '', 'bold') + item('medium', '', 'bold') + item('instagram', '', 'bold') + item('email', '', 'bold') + '<div class="sm-sep"></div>' + item('display') + item('recycle') +
       `<div class="sm-sep"></div><a class="sm-item" href="${CONFIG.siteRepo}" target="_blank" rel="noopener">${ICONS.folder}<div><b>Source of this site</b></div></a>`;
     this.node.addEventListener('click', e => {
