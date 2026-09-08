@@ -4,6 +4,7 @@
    Everything configurable lives in CONFIG at the top.
    ===================================================================== */
 
+const TERM_LIMIT = 5;
 const CONFIG = {
   name: 'Apoorv Khanna',
   email: 'apoorv@vaaya.ai',
@@ -109,6 +110,7 @@ const ICONS = {
   instagram: `<svg viewBox="0 0 48 48"><defs><radialGradient id="gig" cx=".3" cy="1.1" r="1.2"><stop offset="0" stop-color="#fd5"/><stop offset=".45" stop-color="#ff543e"/><stop offset="1" stop-color="#c837ab"/></radialGradient></defs><rect x="4" y="4" width="40" height="40" rx="11" fill="url(#gig)"/><rect x="11.5" y="11.5" width="25" height="25" rx="7" fill="none" stroke="#fff" stroke-width="3"/><circle cx="24" cy="24" r="6" fill="none" stroke="#fff" stroke-width="3"/><circle cx="31.5" cy="16.5" r="1.8" fill="#fff"/></svg>`,
   notepad: `<svg viewBox="0 0 48 48"><path d="M10 5h22l9 9v29H10z" fill="#fff" stroke="#6b7a8f" stroke-width="1.5"/><path d="M32 5v9h9" fill="#dfe6f0" stroke="#6b7a8f" stroke-width="1.5"/><path d="M15 19h18M15 24h18M15 29h18M15 34h12" stroke="#4c6ea8" stroke-width="1.6"/><rect x="8" y="3" width="10" height="7" rx="1.5" fill="#3d7fd6" stroke="#1f4f96"/><rect x="8" y="12" width="10" height="7" rx="1.5" fill="#3d7fd6" stroke="#1f4f96"/></svg>`,
   calendar: `<svg viewBox="0 0 48 48"><rect x="5" y="8" width="38" height="36" rx="3" fill="#fff" stroke="#6b7a8f" stroke-width="1.5"/><path d="M5 11a3 3 0 0 1 3-3h32a3 3 0 0 1 3 3v8H5z" fill="#2f63c9"/><rect x="12" y="4" width="4" height="9" rx="1.5" fill="#444"/><rect x="32" y="4" width="4" height="9" rx="1.5" fill="#444"/><text x="24" y="38" text-anchor="middle" font-family="Tahoma, Arial, sans-serif" font-weight="700" font-size="17" fill="#1a1a1a">30</text><text x="24" y="17" text-anchor="middle" font-family="Tahoma, Arial, sans-serif" font-size="6.5" fill="#fff">MINUTES</text></svg>`,
+  terminal: `<svg viewBox="0 0 48 48"><rect x="3" y="6" width="42" height="36" rx="3" fill="#000" stroke="#7a7a7a" stroke-width="1.5"/><path d="M3 9a3 3 0 0 1 3-3h36a3 3 0 0 1 3 3v5H3z" fill="#2f63c9"/><circle cx="40" cy="10" r="2" fill="#e04b3a"/><text x="8" y="28" font-family="Lucida Console, Menlo, monospace" font-size="9" fill="#c0c0c0">C:\\vaaya&gt;</text><rect x="9" y="31" width="6" height="2" fill="#fff"/></svg>`,
   saul: `<svg viewBox="0 0 48 48"><rect x="3" y="3" width="42" height="42" rx="6" fill="#f5c400"/><rect x="3" y="3" width="42" height="42" rx="6" fill="none" stroke="#b58900" stroke-width="1.5"/><path d="M14 13c-3 1-5 4-3 9 3 8 9 13 15 15 5 2 8 0 9-3l-5-4-4 2c-4-2-7-5-9-9l2-4z" fill="#111"/><text x="24" y="43" text-anchor="middle" font-family="Impact, Arial Black, sans-serif" font-size="7" fill="#b40000">BETTER CALL</text></svg>`,
   crayon: `<svg viewBox="0 0 48 48"><g transform="rotate(45 24 24)"><path d="M19 4h10l0 6H19z" fill="#e0402a"/><path d="M24 -2l5 6H19z" fill="#f6b19e"/><rect x="18" y="10" width="12" height="30" rx="1" fill="#e0402a"/><rect x="18" y="14" width="12" height="20" fill="#f1e2b8"/><rect x="18" y="14" width="12" height="3" fill="#2b2b2b"/><rect x="18" y="31" width="12" height="3" fill="#2b2b2b"/><rect x="18" y="40" width="12" height="4" fill="#c33320"/></g></svg>`,
   off: `<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#e2471a"/><path d="M24 12v12" stroke="#fff" stroke-width="4" stroke-linecap="round"/><path d="M15 16a12 12 0 1 0 18 0" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/></svg>`,
@@ -173,6 +175,7 @@ const WM = {
     const app = APPS[id];
     if (!app) return;
     if (app.url) { window.open(app.url, '_blank', 'noopener'); return; }
+    if (app.run) { app.run(); return; }
     if (id === 'winamp') { Winamp.show(); return; }
     let w = this.wins.get(id);
     if (w) { w.node.classList.remove('min'); this.focus(id); return; }
@@ -180,7 +183,7 @@ const WM = {
     this.wins.set(id, w);
     Taskbar.render();
     this.focus(id);
-    app.onOpen?.(w);
+    app.onOpen?.(w.node);
   },
   create(id, app) {
     const node = el('div', 'win');
@@ -317,6 +320,13 @@ const APPS = {
     body: () => `<iframe src="https://vc.quenq.com/" title="GTA Vice City" allow="fullscreen; autoplay; gamepad; pointer-lock" allowfullscreen loading="eager"></iframe>`,
   },
   winamp: { title: 'Winamp', icon: 'winamp' },
+  terminal: {
+    title: 'Vaaya CLI', icon: 'terminal', width: 760, height: 480, plain: true,
+    status: `demo build · <b class="term-count">0</b>/${TERM_LIMIT} commands used · <a href="https://www.npmjs.com/package/@vaaya/mcp" target="_blank" rel="noopener">@vaaya/mcp on npm</a>`,
+    body: () => `<div class="term"><pre class="term-out"></pre><div class="term-line"><span class="term-ps">C:\\vaaya&gt;</span><input class="term-in" spellcheck="false" autocomplete="off" autocapitalize="off" aria-label="command"></div></div>`,
+    onOpen: w => Terminal.mount(w),
+  },
+  arrange: { title: 'Arrange Icons', icon: 'display', run: () => { store.set('iconpos', {}); location.reload(); } },
   calendar: {
     title: 'Book a call', icon: 'calendar', width: 820, height: 640, plain: true,
     status: `Free, 30 minutes, on Google Meet · <a href="${CONFIG.calendar}" target="_blank" rel="noopener">open in cal.com</a>`,
@@ -357,7 +367,7 @@ $('#reboot').onclick = e => { e.preventDefault(); location.reload(); };
 
 /* =========================== DESKTOP ICONS =========================== */
 const DESKTOP = [
-  { label: 'Work',    ids: ['about', 'claudepoker', 'askpaxo', 'saul', 'crayon', 'calendar'] },
+  { label: 'Work',    ids: ['about', 'claudepoker', 'askpaxo', 'saul', 'crayon', 'terminal', 'calendar'] },
   { label: 'Socials', ids: ['github', 'x', 'linkedin', 'medium', 'instagram', 'email'] },
   { label: 'Goodies', ids: ['winamp', 'gta', 'notepad', 'display', 'recycle'] },
 ];
@@ -373,10 +383,158 @@ function renderIcons() {
     n.addEventListener('dblclick', () => WM.open(id));
     n.addEventListener('keydown', e => { if (e.key === 'Enter') WM.open(id); });
     box.appendChild(n);
+    makeIconMovable(n, id);
     }
+  }
+  // restore icons the visitor dragged somewhere else last time
+  const saved = store.get('iconpos', {});
+  if (!isNarrow()) for (const n of document.querySelectorAll('#icons .icon')) {
+    const p = saved[n.dataset.id];
+    if (p && p[0] < innerWidth - 40 && p[1] < innerHeight - 90) freeIcon(n, p[0], p[1]);
   }
   $('#desktop').addEventListener('pointerdown', e => { if (e.target === $('#desktop') || e.target.closest('#wallpaper')) document.querySelectorAll('.icon.sel').forEach(i => i.classList.remove('sel')); });
 }
+
+// lift an icon out of its column (leaving a gap, like XP without auto-arrange) and pin it at x,y
+function freeIcon(n, x, y) {
+  if (!n.classList.contains('free')) {
+    const ghost = el('div', 'icon ghost'); ghost.style.height = n.offsetHeight + 'px';
+    n.replaceWith(ghost); n.classList.add('free'); $('#desktop').appendChild(n);
+  }
+  n.style.left = x + 'px'; n.style.top = y + 'px';
+}
+function makeIconMovable(n, id) {
+  let sx, sy, ox, oy, armed = false, moving = false;
+  n.addEventListener('pointerdown', e => {
+    if (e.button !== 0 || isNarrow()) return;
+    armed = true; sx = e.clientX; sy = e.clientY; n.setPointerCapture(e.pointerId);
+  });
+  n.addEventListener('pointermove', e => {
+    if (!armed) return;
+    if (!moving) {
+      if (Math.abs(e.clientX - sx) + Math.abs(e.clientY - sy) < 5) return;
+      const r = n.getBoundingClientRect(); ox = r.left; oy = r.top;
+      moving = true; n.classList.add('dragging'); freeIcon(n, ox, oy);
+    }
+    n.style.left = Math.max(0, Math.min(innerWidth - n.offsetWidth, ox + e.clientX - sx)) + 'px';
+    n.style.top = Math.max(0, Math.min(innerHeight - 80, oy + e.clientY - sy)) + 'px';
+  });
+  const stop = () => {
+    if (moving) { const pos = store.get('iconpos', {}); pos[id] = [n.offsetLeft, n.offsetTop]; store.set('iconpos', pos); }
+    armed = moving = false; n.classList.remove('dragging');
+  };
+  n.addEventListener('pointerup', stop); n.addEventListener('pointercancel', stop);
+}
+
+/* =========================== VAAYA CLI (demo) =========================== */
+const Terminal = {
+  esc: s => s.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c])),
+  link: u => `<a href="${u}" target="_blank" rel="noopener">${u}</a>`,
+  banner() {
+    return `<span class="hi">Vaaya CLI</span> [demo build]  —  the gateway between AI agents and the outside world.
+
+An agent with Vaaya can, from one prepaid wallet, with no API keys to paste:
+  · generate images, video and audio
+  · search, scrape and crawl the web
+  · parse documents, run code in sandboxes, drive a browser
+  · send email, make phone calls, find and enrich leads
+  · pull live data past its training cutoff
+
+Commands (same verbs as the real <span class="hi">npx -y @vaaya/mcp</span>):
+  <span class="hi">consult</span> "&lt;what you want to do&gt;"    plan a task — free, prints the exact call to make
+  <span class="hi">use</span> --service &lt;s&gt; --action &lt;a&gt;    run one call (billed per use, simulated here)
+  <span class="hi">result</span> &lt;job_id&gt;                   poll an async job
+  <span class="hi">docs</span> &lt;media|research|data|compute|gtm&gt;
+  <span class="hi">account</span>                           wallet and connected apps
+  <span class="hi">help</span> · <span class="hi">clear</span>
+
+This demo runs ${TERM_LIMIT} commands. The real thing is one line:  <span class="hi">npx -y @vaaya/mcp install</span>
+`;
+  },
+  PLANS: [
+    [/video|clip|animat|reel/i, 'a video render', 'fal', 'generate-video', { prompt: '…', duration: 5 }, 60, 'renders are async — poll with result <job_id>'],
+    [/image|photo|logo|picture|illustrat|thumbnail|banner/i, 'image generation', 'fal', 'generate-image', { prompt: '…', size: '1024x1024' }, 8, ''],
+    [/voice|speech|audio|narrat|tts|podcast|song/i, 'text-to-speech', 'elevenlabs', 'tts', { text: '…', voice: 'rachel' }, 5, ''],
+    [/scrape|crawl|extract|website|webpage|url|pdf|parse/i, 'a scrape', 'firecrawl', 'scrape', { url: 'https://…', formats: ['markdown'] }, 2, ''],
+    [/email|mail|newsletter|outreach/i, 'sending email', 'resend', 'send', { to: '…', subject: '…', html: '…' }, 1, 'outbound sequences live in the gtm_* tools'],
+    [/call|phone|dial|ring/i, 'a voice call', 'dograh', 'call', { to: '+1…', script: '…' }, 30, 'billed per minute'],
+    [/lead|prospect|enrich|linkedin|decision.?maker|icp|company/i, 'lead enrichment', 'apollo', 'people-search', { titles: ['…'], domains: ['…'] }, 5, ''],
+    [/code|run|sandbox|python|script|execute|compile/i, 'a sandbox', 'e2b', 'run', { language: 'python', code: '…' }, 3, 'billed per second; close the session when done'],
+    [/browser|click|login|form|screenshot|book|checkout/i, 'a headless browser', 'browserbase', 'session', { url: 'https://…', task: '…' }, 5, ''],
+    [/./, 'a web search', 'exa', 'search', { query: '…', num_results: 10 }, 1, 'exa returns full text, not just links'],
+  ],
+  DOCS: {
+    media: 'media — fal (image/video), elevenlabs (voice), suno (music). Async jobs return { job_id }; poll with result.',
+    research: 'research — exa and tavily for search, firecrawl for scrape/crawl, apify for social. Full text, not snippets.',
+    data: 'data — document parsing, enrichment (apollo, clearbit), live post-cutoff feeds (news, prices, filings).',
+    compute: 'compute — e2b sandboxes and browserbase browsers, billed per second. Always close the session.',
+    gtm: 'gtm — find leads, enrich, write, send, watch replies, approve. One loop from segment to booked meeting.',
+  },
+  mount(w) {
+    const out = w.querySelector('.term-out'), inp = w.querySelector('.term-in'), count = w.querySelector('.term-count');
+    let used = 0; const hist = []; let hi = 0;
+    const print = (html, cls = '') => { const d = el('div', cls); d.innerHTML = html; out.appendChild(d); out.scrollTop = out.scrollHeight; };
+    print(this.banner());
+    w.querySelector('.term').addEventListener('click', () => inp.focus());
+    inp.addEventListener('keydown', e => {
+      if (e.key === 'ArrowUp') { e.preventDefault(); if (hi > 0) inp.value = hist[--hi]; return; }
+      if (e.key === 'ArrowDown') { e.preventDefault(); inp.value = hist[++hi] || ''; hi = Math.min(hi, hist.length); return; }
+      if (e.key !== 'Enter' || used >= TERM_LIMIT) return;
+      const raw = inp.value.trim(); inp.value = ''; hist.push(raw); hi = hist.length;
+      print(`C:\\vaaya&gt; ${this.esc(raw)}`, 'cmd');
+      if (!raw) return;
+      const line = raw.replace(/^(npx\s+(-y\s+)?@vaaya\/mcp|vaaya)\s+/i, '');
+      const [cmd, ...rest] = line.split(/\s+/); const arg = line.slice(cmd.length).trim();
+      if (cmd === 'clear') { out.innerHTML = ''; return; }
+      if (cmd === 'help') { print(this.banner()); return; }
+      used++; count.textContent = used;
+      print(this.run(cmd.toLowerCase(), arg, rest));
+      if (used >= TERM_LIMIT) {
+        print(`
+── demo limit reached (${TERM_LIMIT}/${TERM_LIMIT}) ───────────────────────────────────────
+That's the tour. Everything above runs for real, from any agent, against your own wallet:
+
+  <span class="hi">npx -y @vaaya/mcp install</span>     wires Vaaya into Claude Code, Cursor, Codex and Claude Desktop
+  ${this.link('https://vaaya.ai')}          create an account, mint a key, top up
+
+(Close and reopen this window for another ${TERM_LIMIT}.)`, 'warn');
+        inp.disabled = true; inp.placeholder = 'demo over — see above';
+      }
+    });
+    setTimeout(() => inp.focus(), 50);
+  },
+  run(cmd, arg, rest) {
+    const esc = this.esc;
+    switch (cmd) {
+      case 'consult': {
+        const intent = arg.replace(/^["']|["']$/g, '');
+        if (!intent) return `usage: consult "&lt;what you want to do&gt;"`;
+        const [, what, service, action, params, cost, note] = this.PLANS.find(([re]) => re.test(intent));
+        return `<span class="ok">plan</span>  "${esc(intent)}" needs ${what}. ${note ? esc(note) + '.' : ''}
+  → use --service ${service} --action ${action} --params '${esc(JSON.stringify(params))}' --max-cost ${cost}
+consult is free and runs nothing. Run the line above (simulated here, real locally).`;
+      }
+      case 'use': {
+        const get = f => { const i = rest.indexOf(f); return i >= 0 ? rest[i + 1] : null; };
+        const s = get('--service'), a = get('--action'), c = get('--max-cost') || '?';
+        if (!s || !a) return `usage: use --service &lt;s&gt; --action &lt;a&gt; --params '&lt;json&gt;' --max-cost &lt;cents&gt;`;
+        const id = 'job_' + Math.random().toString(36).slice(2, 8);
+        return `<span class="ok">ok</span>    ${esc(s)}/${esc(a)} queued, capped at ${esc(c)}¢ · job_id ${id}
+       simulated — nothing was billed and nothing was made. Locally this would return the result or { async: true, job_id }.
+       poll: result ${id}`;
+      }
+      case 'result':
+        return rest[0] ? `<span class="ok">done</span>  ${esc(rest[0])} — status: completed (simulated). Real jobs return a URL, JSON, or a file here.` : 'usage: result &lt;job_id&gt; [--wait]';
+      case 'docs':
+        return this.DOCS[rest[0]] ? esc(this.DOCS[rest[0]]) : `docs topics: ${Object.keys(this.DOCS).join(' | ')}`;
+      case 'account':
+        return `account   demo (not signed in)\nwallet    $0.00\napps      none connected\nSign in with your browser once — no keys to paste: ${this.link('https://vaaya.ai')}`;
+      case 'ls': case 'dir': return ` Volume in drive C is VAAYA\n\n consult  use  result  docs  account`;
+      case 'exit': return 'Nice try. Close the window.';
+      default: return `'${esc(cmd)}' is not recognized as a Vaaya command. Type help.`;
+    }
+  },
+};
 
 /* =========================== STICKY NOTE =========================== */
 function initNote() {
@@ -413,8 +571,8 @@ const StartMenu = {
   node: $('#startmenu'), btn: $('#start-btn'),
   init() {
     const item = (id, sub, extra = '') => { const a = APPS[id]; return `<a class="sm-item ${extra}" href="${a.url || '#'}" data-id="${id}" ${a.url ? 'target="_blank" rel="noopener"' : ''}>${ICONS[a.icon]}<div><b>${a.label || a.title}</b>${sub ? `<small>${sub}</small>` : ''}</div></a>`; };
-    $('#sm-left').innerHTML = PROJECTS.map(p => item(p.id, p.tag)).join('') + '<div class="sm-sep"></div>' + item('winamp', '90s rock, on repeat') + item('gta', 'Vice City, in the browser') + item('notepad', 'Scratch space') + item('about', 'Who is this guy') + '<div class="sm-sep"></div>' + item('calendar', 'Book 30 mins — how AI can help your company');
-    $('#sm-right').innerHTML = item('github', '', 'bold') + item('x', '', 'bold') + item('linkedin', '', 'bold') + item('medium', '', 'bold') + item('instagram', '', 'bold') + item('email', '', 'bold') + '<div class="sm-sep"></div>' + item('display') + item('recycle') +
+    $('#sm-left').innerHTML = PROJECTS.map(p => item(p.id, p.tag)).join('') + '<div class="sm-sep"></div>' + item('winamp', '90s rock, on repeat') + item('gta', 'Vice City, in the browser') + item('notepad', 'Scratch space') + item('terminal', 'Try the Vaaya CLI, 5 commands') + item('about', 'Who is this guy') + '<div class="sm-sep"></div>' + item('calendar', 'Book 30 mins — how AI can help your company');
+    $('#sm-right').innerHTML = item('github', '', 'bold') + item('x', '', 'bold') + item('linkedin', '', 'bold') + item('medium', '', 'bold') + item('instagram', '', 'bold') + item('email', '', 'bold') + '<div class="sm-sep"></div>' + item('display') + item('arrange') + item('recycle') +
       `<div class="sm-sep"></div><a class="sm-item" href="${CONFIG.siteRepo}" target="_blank" rel="noopener">${ICONS.folder}<div><b>Source of this site</b></div></a>`;
     this.node.addEventListener('click', e => {
       const a = e.target.closest('.sm-item'); if (!a) return;

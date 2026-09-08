@@ -97,6 +97,22 @@ a { color: inherit; }
 .icon.sel { background: rgba(10, 36, 106, .45); outline: 1px dotted rgba(255,255,255,.6); }
 .icon.sel svg { opacity: .75; }
 .icon.spacer { height: 10px; padding: 0; }
+.icon.ghost { visibility: hidden; }
+.icon.free { position: absolute; z-index: 3; }
+.icon.dragging { opacity: .7; }
+.icon { touch-action: none; }
+
+/* Vaaya CLI */
+.term { height: 100%; display: flex; flex-direction: column; padding: 4px 6px; background: #000; color: #c0c0c0; font: 12px/1.45 "Lucida Console", Monaco, Menlo, monospace; cursor: text; user-select: text; -webkit-user-select: text; }
+.term-out { flex: 1; margin: 0; overflow: auto; white-space: pre-wrap; word-break: break-word; font: inherit; }
+.term-out .cmd { color: #fff; margin-top: 4px; }
+.term-out .ok { color: #7fdc7f; } .term-out .warn { color: #ffd866; } .term-out .hi { color: #fff; font-weight: 700; }
+.term-out a, .win-status a { color: #7fb3ff; }
+.win-status a { color: #1a4fb3; }
+.term-line { display: flex; gap: 6px; }
+.term-ps { color: #fff; white-space: pre; }
+.term-in { flex: 1; min-width: 0; background: none; border: 0; outline: 0; color: #fff; font: inherit; padding: 0; caret-color: #fff; }
+.term-in:disabled { opacity: .5; }
 
 /* sticky note */
 #note {
