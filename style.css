@@ -80,8 +80,12 @@ a { color: inherit; }
 /* icons */
 #icons {
   position: absolute; left: 6px; top: 6px; bottom: 36px; z-index: 3;
-  display: flex; flex-direction: column; flex-wrap: wrap; align-content: flex-start;
-  gap: 4px 2px;
+  display: flex; align-items: flex-start; gap: 6px;
+}
+.icon-group { display: flex; flex-direction: column; gap: 4px; }
+.icon-group h2 {
+  margin: 2px 0 2px; padding: 0 4px 3px; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: #fff; text-shadow: 1px 1px 2px #000, 0 0 3px rgba(0,0,0,.6); border-bottom: 1px solid rgba(255,255,255,.55);
 }
 .icon {
   width: 78px; padding: 4px 2px 3px; text-align: center; border-radius: 2px;
@@ -422,9 +426,10 @@ a { color: inherit; }
 
 /* =========================== RESPONSIVE =========================== */
 @media (max-width: 720px) {
-  #icons { display: grid; grid-template-columns: repeat(auto-fill, 64px); justify-content: space-between; gap: 6px 4px; right: 6px; bottom: auto; height: auto; }
+  #icons { flex-direction: column; right: 6px; bottom: auto; height: auto; gap: 8px; }
+  .icon-group { display: grid; grid-template-columns: repeat(auto-fill, 64px); justify-content: space-between; gap: 6px 4px; }
+  .icon-group h2 { grid-column: 1 / -1; }
   .icon { width: 64px; }
-  .icon.spacer { display: none; }
   .win { width: 100vw !important; left: 0 !important; top: 0 !important; height: calc(100% - 0px) !important; border-radius: 0; border-width: 0; }
   .explorer { grid-template-columns: 1fr; }
   .explorer-side { display: none; }

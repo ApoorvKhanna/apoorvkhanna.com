@@ -38,6 +38,18 @@ const PROJECTS = [
     body: `<p>Paxo scrapes every rental listing site for a city, dedupes the same flat posted five times, and ranks what's left the way a local would — by neighbourhood, commute and whether the photos are lying.</p>
       <ul><li>Bangalore and Bombay, with the Bay Area for short-term stays</li><li>Fresh listings every few hours, labelled by locality</li><li>Ask it in plain English</li></ul>`,
   },
+  {
+    id: 'saul', name: 'Better Call Saul', url: 'https://better-call-saul.fly.dev/', icon: 'saul',
+    tag: 'An AI business consultant, on a voice call.',
+    body: `<p>Saul interviews you about your business the way a good consultant would — specifics, numbers, what you already tried — answers the one question you came with from a library of consulting playbooks, then builds a slide deck from the conversation and walks you through it on screen, live, before he hangs up.</p>
+      <ul><li>Three movements: questions, answers, the boardroom</li><li>Won't let you go without a commitments slide — who does what, by when</li><li>Voice runs on Dograh, the open-source alternative to Vapi; the rest is dependency-free Node</li></ul>`,
+  },
+  {
+    id: 'crayon', name: 'Crayon', url: 'https://crayon-board.fly.dev/board?u=vaaya.ai', icon: 'crayon',
+    tag: 'Paste a URL. Get your market sketched on one board.',
+    body: `<p>Give Crayon your product's URL and it draws your market on a single hand-drawn board: live <b>threads</b> on X, Reddit and LinkedIn you can jump into, ~30 <b>people</b> worth reaching with a profile to reach them on, and <b>signals</b> — competitor moves, partnership openings, fundraising news.</p>
+      <ul><li>The link opens the board for vaaya.ai</li><li>Search, social and news data via Vaaya (Exa, Tavily, Apify under the hood)</li><li>Zero-dependency Node, crayon-on-paper UI</li></ul>`,
+  },
 ];
 
 const PAINTINGS = [
@@ -95,6 +107,8 @@ const ICONS = {
   medium: `<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#000"/><ellipse cx="18" cy="24" rx="8" ry="9" fill="#fff"/><ellipse cx="31" cy="24" rx="3.6" ry="8.5" fill="#fff"/><ellipse cx="37.5" cy="24" rx="1.5" ry="7.5" fill="#fff"/></svg>`,
   instagram: `<svg viewBox="0 0 48 48"><defs><radialGradient id="gig" cx=".3" cy="1.1" r="1.2"><stop offset="0" stop-color="#fd5"/><stop offset=".45" stop-color="#ff543e"/><stop offset="1" stop-color="#c837ab"/></radialGradient></defs><rect x="4" y="4" width="40" height="40" rx="11" fill="url(#gig)"/><rect x="11.5" y="11.5" width="25" height="25" rx="7" fill="none" stroke="#fff" stroke-width="3"/><circle cx="24" cy="24" r="6" fill="none" stroke="#fff" stroke-width="3"/><circle cx="31.5" cy="16.5" r="1.8" fill="#fff"/></svg>`,
   notepad: `<svg viewBox="0 0 48 48"><path d="M10 5h22l9 9v29H10z" fill="#fff" stroke="#6b7a8f" stroke-width="1.5"/><path d="M32 5v9h9" fill="#dfe6f0" stroke="#6b7a8f" stroke-width="1.5"/><path d="M15 19h18M15 24h18M15 29h18M15 34h12" stroke="#4c6ea8" stroke-width="1.6"/><rect x="8" y="3" width="10" height="7" rx="1.5" fill="#3d7fd6" stroke="#1f4f96"/><rect x="8" y="12" width="10" height="7" rx="1.5" fill="#3d7fd6" stroke="#1f4f96"/></svg>`,
+  saul: `<svg viewBox="0 0 48 48"><rect x="3" y="3" width="42" height="42" rx="6" fill="#f5c400"/><rect x="3" y="3" width="42" height="42" rx="6" fill="none" stroke="#b58900" stroke-width="1.5"/><path d="M14 13c-3 1-5 4-3 9 3 8 9 13 15 15 5 2 8 0 9-3l-5-4-4 2c-4-2-7-5-9-9l2-4z" fill="#111"/><text x="24" y="43" text-anchor="middle" font-family="Impact, Arial Black, sans-serif" font-size="7" fill="#b40000">BETTER CALL</text></svg>`,
+  crayon: `<svg viewBox="0 0 48 48"><g transform="rotate(45 24 24)"><path d="M19 4h10l0 6H19z" fill="#e0402a"/><path d="M24 -2l5 6H19z" fill="#f6b19e"/><rect x="18" y="10" width="12" height="30" rx="1" fill="#e0402a"/><rect x="18" y="14" width="12" height="20" fill="#f1e2b8"/><rect x="18" y="14" width="12" height="3" fill="#2b2b2b"/><rect x="18" y="31" width="12" height="3" fill="#2b2b2b"/><rect x="18" y="40" width="12" height="4" fill="#c33320"/></g></svg>`,
   off: `<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#e2471a"/><path d="M24 12v12" stroke="#fff" stroke-width="4" stroke-linecap="round"/><path d="M15 16a12 12 0 1 0 18 0" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/></svg>`,
 };
 const GLYPH = {
@@ -334,12 +348,15 @@ $('#reboot').onclick = e => { e.preventDefault(); location.reload(); };
 
 /* =========================== DESKTOP ICONS =========================== */
 const DESKTOP = [
-  'about', 'claudepoker', 'askpaxo', 'gta', '-', 'github', 'x', 'linkedin', 'medium', 'instagram', 'email', '-', 'winamp', 'notepad', 'display', 'recycle',
+  { label: 'Work',    ids: ['about', 'claudepoker', 'askpaxo', 'saul', 'crayon'] },
+  { label: 'Socials', ids: ['github', 'x', 'linkedin', 'medium', 'instagram', 'email'] },
+  { label: 'Goodies', ids: ['winamp', 'gta', 'notepad', 'display', 'recycle'] },
 ];
 function renderIcons() {
-  const box = $('#icons');
-  for (const id of DESKTOP) {
-    if (id === '-') { box.appendChild(el('div', 'icon spacer')); continue; }
+  for (const g of DESKTOP) {
+    const box = el('div', 'icon-group', `<h2>${g.label}</h2>`);
+    $('#icons').appendChild(box);
+    for (const id of g.ids) {
     const app = APPS[id];
     const n = el('div', 'icon', `${ICONS[app.icon]}<span>${app.label || app.title}</span>`);
     n.tabIndex = 0; n.dataset.id = id;
@@ -347,6 +364,7 @@ function renderIcons() {
     n.addEventListener('dblclick', () => WM.open(id));
     n.addEventListener('keydown', e => { if (e.key === 'Enter') WM.open(id); });
     box.appendChild(n);
+    }
   }
   $('#desktop').addEventListener('pointerdown', e => { if (e.target === $('#desktop') || e.target.closest('#wallpaper')) document.querySelectorAll('.icon.sel').forEach(i => i.classList.remove('sel')); });
 }
@@ -356,7 +374,7 @@ function initNote() {
   const n = $('#note');
   const place = () => {
     if (n.dataset.moved) return;
-    n.style.left = (isNarrow() ? Math.round((innerWidth - 170) / 2) : Math.round(innerWidth * 0.36)) + 'px';
+    n.style.left = (isNarrow() ? Math.round((innerWidth - 170) / 2) : Math.round(innerWidth * 0.42)) + 'px';
     n.style.top = (isNarrow() ? 150 : 40) + 'px';
   };
   place(); addEventListener('resize', place);
