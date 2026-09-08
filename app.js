@@ -115,6 +115,7 @@ const ICONS = {
   email: `<svg viewBox="0 0 48 48"><rect x="4" y="11" width="40" height="27" rx="3" fill="#fff" stroke="#6b7ea8" stroke-width="2"/><path d="M5 13l19 14 19-14" fill="#e9eefb" stroke="#6b7ea8" stroke-width="2" stroke-linejoin="round"/><path d="M5 37l14-12M43 37L29 25" fill="none" stroke="#6b7ea8" stroke-width="2"/></svg>`,
   winamp: `<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="21" fill="#f5a623" stroke="#8a5300" stroke-width="1.5"/><path d="M27 6l-12 21h8l-3 15 12-22h-8z" fill="#111"/></svg>`,
   pocketamp: `<svg viewBox="0 0 48 48"><rect x="12" y="2" width="24" height="44" rx="4" fill="#f7f7f5" stroke="#9a9a94" stroke-width="1.5"/><rect x="15" y="5.5" width="18" height="14" rx="1.5" fill="#9bbc0f" stroke="#2a2f3a" stroke-width="1.5"/><path d="M18 10h6M18 13.5h9" stroke="#0f380f" stroke-width="1.4" stroke-linecap="round"/><path d="M16.5 16.8h15" stroke="#0f380f" stroke-width="1" opacity=".45"/><circle cx="24" cy="32.5" r="8.5" fill="#eeeeec" stroke="#c9c9c3" stroke-width="1.2"/><circle cx="24" cy="32.5" r="3.2" fill="#fdfdfc" stroke="#c9c9c3"/><g fill="#a8a8a2"><path d="M22.5 26.4h3l-1.5-1.8z"/><path d="M22.5 38.6h3l-1.5 1.8z"/><path d="M18.2 31v3l-1.8-1.5z"/><path d="M29.8 31v3l1.8-1.5z"/></g></svg>`,
+  meme: `<svg viewBox="0 0 48 48"><rect x="4" y="5" width="40" height="38" rx="3" fill="#f2efe6" stroke="#15140f" stroke-width="2"/><path d="M4 8a3 3 0 0 1 3-3h34a3 3 0 0 1 3 3v8H4z" fill="#c8232a"/><text x="24" y="35" text-anchor="middle" font-family="Impact, Arial Black, sans-serif" font-size="15" fill="#fff" stroke="#15140f" stroke-width="1.3" paint-order="stroke">MEME</text><text x="24" y="14" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="6" fill="#fff" letter-spacing=".5">SOMMELIER</text></svg>`,
   recycle: `<svg viewBox="0 0 48 48"><path d="M10 15h28l-3 27H13z" fill="#cfe3f5" fill-opacity=".85" stroke="#4a7ab5" stroke-width="2"/><rect x="8" y="10.5" width="32" height="5" rx="2" fill="#7fb0e0" stroke="#4a7ab5" stroke-width="1.5"/><path d="M18 20v18M24 20v18M30 20v18" stroke="#4a7ab5" stroke-width="2"/><path d="M19 10l2-4h6l2 4" fill="none" stroke="#4a7ab5" stroke-width="2"/><path d="M16 26l5-3-2 5M32 26l-5-3 2 5" fill="none" stroke="#3c9a3c" stroke-width="1.5"/></svg>`,
   display: `<svg viewBox="0 0 48 48"><rect x="5" y="7" width="38" height="27" rx="2" fill="#d4d0c8" stroke="#555" stroke-width="2"/><rect x="8" y="10" width="32" height="21" fill="#3a6ea5"/><path d="M8 31l32-21v21z" fill="#5e94d1"/><rect x="18" y="36" width="12" height="4" fill="#888"/><rect x="13" y="40" width="22" height="3" rx="1" fill="#666"/></svg>`,
   folder: `<svg viewBox="0 0 48 48"><path d="M4 12h14l4 4h22v24H4z" fill="#f7d774" stroke="#b8901e" stroke-width="1.5"/><path d="M4 20h40v20H4z" fill="#ffe89a" stroke="#b8901e" stroke-width="1.5"/></svg>`,
@@ -334,6 +335,11 @@ const APPS = {
     body: () => `<iframe src="https://vc.quenq.com/" title="GTA Vice City" allow="fullscreen; autoplay; gamepad; pointer-lock" allowfullscreen loading="eager"></iframe>`,
   },
   winamp: { title: 'Winamp', icon: 'winamp' },
+  meme: {
+    title: 'Meme Sommelier', icon: 'meme', width: 1040, height: 700, plain: true,
+    status: `Describe a situation, get four memes · <a href="https://meme-sommelier.vercel.app" target="_blank" rel="noopener">open full screen</a>`,
+    body: () => `<iframe src="https://meme-sommelier.vercel.app/" title="Meme Sommelier" loading="eager"></iframe>`,
+  },
   pocketamp: {
     title: 'Pocketamp', icon: 'pocketamp', width: 560, height: 560,
     status: `v${POCKETAMP.version} · free, MIT · macOS 12 and later · <a href="${POCKETAMP.site}" target="_blank" rel="noopener">pocketamp site</a>`,
@@ -400,7 +406,7 @@ $('#reboot').onclick = e => { e.preventDefault(); location.reload(); };
 const DESKTOP = [
   { label: 'Work',    ids: ['about', 'claudepoker', 'askpaxo', 'saul', 'crayon', 'calendar'] },
   { label: 'Socials', ids: ['github', 'x', 'linkedin', 'medium', 'instagram', 'email'] },
-  { label: 'Goodies', ids: ['winamp', 'pocketamp', 'gta', 'notepad', 'terminal', 'display', 'recycle'] },
+  { label: 'Goodies', ids: ['winamp', 'pocketamp', 'meme', 'gta', 'notepad', 'terminal', 'display', 'recycle'] },
 ];
 function renderIcons() {
   for (const g of DESKTOP) {
@@ -619,7 +625,7 @@ const StartMenu = {
   node: $('#startmenu'), btn: $('#start-btn'),
   init() {
     const item = (id, sub, extra = '') => { const a = APPS[id]; return `<a class="sm-item ${extra}" href="${a.url || '#'}" data-id="${id}" ${a.url ? 'target="_blank" rel="noopener"' : ''}>${ICONS[a.icon]}<div><b>${a.label || a.title}</b>${sub ? `<small>${sub}</small>` : ''}</div></a>`; };
-    $('#sm-left').innerHTML = PROJECTS.map(p => item(p.id, p.tag)).join('') + '<div class="sm-sep"></div>' + item('winamp', '90s rock, on repeat') + item('pocketamp', 'An iPod for your Mac — free download') + item('gta', 'Vice City, in the browser') + item('notepad', 'Scratch space') + item('terminal', 'Type ai "…" and watch') + item('about', 'Who is this guy') + '<div class="sm-sep"></div>' + item('calendar', 'Book 30 mins — how AI can help your company');
+    $('#sm-left').innerHTML = PROJECTS.map(p => item(p.id, p.tag)).join('') + '<div class="sm-sep"></div>' + item('winamp', '90s rock, on repeat') + item('pocketamp', 'An iPod for your Mac — free download') + item('meme', 'Four memes for any situation, one always desi') + item('gta', 'Vice City, in the browser') + item('notepad', 'Scratch space') + item('terminal', 'Type ai "…" and watch') + item('about', 'Who is this guy') + '<div class="sm-sep"></div>' + item('calendar', 'Book 30 mins — how AI can help your company');
     $('#sm-right').innerHTML = item('github', '', 'bold') + item('x', '', 'bold') + item('linkedin', '', 'bold') + item('medium', '', 'bold') + item('instagram', '', 'bold') + item('email', '', 'bold') + '<div class="sm-sep"></div>' + item('display') + item('arrange') + item('recycle') +
       `<div class="sm-sep"></div><a class="sm-item" href="${CONFIG.siteRepo}" target="_blank" rel="noopener">${ICONS.folder}<div><b>Source of this site</b></div></a>`;
     this.node.addEventListener('click', e => {
