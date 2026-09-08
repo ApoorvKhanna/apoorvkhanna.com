@@ -11,6 +11,8 @@ const CONFIG = {
     github:   'https://github.com/ApoorvKhanna',
     x:        'https://x.com/token_wala',
     linkedin: 'https://www.linkedin.com/in/apoorvkhanna',
+    medium:   'https://medium.com/@apoorvkhanna',
+    instagram:'https://www.instagram.com/apoorvkhanna/',
   },
   siteRepo: 'https://github.com/ApoorvKhanna/apoorvkhanna.com',
   wallpaperInterval: 45_000,
@@ -90,6 +92,9 @@ const ICONS = {
   folder: `<svg viewBox="0 0 48 48"><path d="M4 12h14l4 4h22v24H4z" fill="#f7d774" stroke="#b8901e" stroke-width="1.5"/><path d="M4 20h40v20H4z" fill="#ffe89a" stroke="#b8901e" stroke-width="1.5"/></svg>`,
   txt: `<svg viewBox="0 0 48 48"><path d="M10 4h20l8 8v32H10z" fill="#fff" stroke="#777" stroke-width="1.5"/><path d="M30 4v8h8" fill="#ddd" stroke="#777" stroke-width="1.5"/><path d="M15 20h18M15 26h18M15 32h12" stroke="#555" stroke-width="1.5"/></svg>`,
   gta: `<svg viewBox="0 0 48 48"><defs><linearGradient id="gvc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff3cac"/><stop offset=".55" stop-color="#ff8a3d"/><stop offset="1" stop-color="#2af0d8"/></linearGradient></defs><rect x="3" y="3" width="42" height="42" rx="5" fill="url(#gvc)"/><circle cx="24" cy="26" r="11" fill="#ffe873"/><path d="M3 30h42v15H3z" fill="#1a0a2e" opacity=".85"/><path d="M13 45V27M13 27c-4-2-8-1-9 2M13 27c-1-4 2-7 5-7M13 27c3-3 8-3 10 0M13 27c-2-3-6-5-9-3" fill="none" stroke="#1a0a2e" stroke-width="2.5" stroke-linecap="round"/><path d="M36 45V29M36 29c-3-2-7-1-8 2M36 29c0-4 3-6 6-6M36 29c3-2 7-1 8 2" fill="none" stroke="#1a0a2e" stroke-width="2.5" stroke-linecap="round"/><text x="24" y="42" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="7" fill="#ff3cac" font-style="italic">VICE CITY</text></svg>`,
+  medium: `<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#000"/><ellipse cx="18" cy="24" rx="8" ry="9" fill="#fff"/><ellipse cx="31" cy="24" rx="3.6" ry="8.5" fill="#fff"/><ellipse cx="37.5" cy="24" rx="1.5" ry="7.5" fill="#fff"/></svg>`,
+  instagram: `<svg viewBox="0 0 48 48"><defs><radialGradient id="gig" cx=".3" cy="1.1" r="1.2"><stop offset="0" stop-color="#fd5"/><stop offset=".45" stop-color="#ff543e"/><stop offset="1" stop-color="#c837ab"/></radialGradient></defs><rect x="4" y="4" width="40" height="40" rx="11" fill="url(#gig)"/><rect x="11.5" y="11.5" width="25" height="25" rx="7" fill="none" stroke="#fff" stroke-width="3"/><circle cx="24" cy="24" r="6" fill="none" stroke="#fff" stroke-width="3"/><circle cx="31.5" cy="16.5" r="1.8" fill="#fff"/></svg>`,
+  notepad: `<svg viewBox="0 0 48 48"><path d="M10 5h22l9 9v29H10z" fill="#fff" stroke="#6b7a8f" stroke-width="1.5"/><path d="M32 5v9h9" fill="#dfe6f0" stroke="#6b7a8f" stroke-width="1.5"/><path d="M15 19h18M15 24h18M15 29h18M15 34h12" stroke="#4c6ea8" stroke-width="1.6"/><rect x="8" y="3" width="10" height="7" rx="1.5" fill="#3d7fd6" stroke="#1f4f96"/><rect x="8" y="12" width="10" height="7" rx="1.5" fill="#3d7fd6" stroke="#1f4f96"/></svg>`,
   off: `<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#e2471a"/><path d="M24 12v12" stroke="#fff" stroke-width="4" stroke-linecap="round"/><path d="M15 16a12 12 0 1 0 18 0" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/></svg>`,
 };
 const GLYPH = {
@@ -241,7 +246,7 @@ const APPS = {
     body: () => `<div class="explorer">
       <div class="explorer-side">
         <div class="box"><h3>Projects</h3>${PROJECTS.map(p => `<a href="#" data-open="${p.id}">${p.name}</a>`).join('')}</div>
-        <div class="box"><h3>Other Places</h3><a href="${CONFIG.socials.github}" target="_blank" rel="noopener">GitHub</a><a href="${CONFIG.socials.x}" target="_blank" rel="noopener">X / Twitter</a><a href="${CONFIG.socials.linkedin}" target="_blank" rel="noopener">LinkedIn</a><a href="mailto:${CONFIG.email}">Email</a></div>
+        <div class="box"><h3>Other Places</h3><a href="${CONFIG.socials.github}" target="_blank" rel="noopener">GitHub</a><a href="${CONFIG.socials.x}" target="_blank" rel="noopener">X / Twitter</a><a href="${CONFIG.socials.linkedin}" target="_blank" rel="noopener">LinkedIn</a><a href="${CONFIG.socials.medium}" target="_blank" rel="noopener">Medium</a><a href="${CONFIG.socials.instagram}" target="_blank" rel="noopener">Instagram</a><a href="mailto:${CONFIG.email}">Email</a></div>
         <div class="box"><h3>Details</h3><a href="#" data-open="winamp">Now playing</a><a href="#" data-open="display">Wallpaper</a></div>
       </div>
       <div class="explorer-main">
@@ -295,9 +300,22 @@ const APPS = {
     body: () => `<iframe src="https://vc.quenq.com/" title="GTA Vice City" allow="fullscreen; autoplay; gamepad; pointer-lock" allowfullscreen loading="eager"></iframe>`,
   },
   winamp: { title: 'Winamp', icon: 'winamp' },
+  notepad: {
+    title: 'Untitled - Notepad', label: 'Notepad', icon: 'notepad', width: 520, height: 400, status: 'Saved in this browser only',
+    body: () => `<div class="np-menu"><span>File</span><span>Edit</span><span>Format</span><span>View</span><span>Help</span></div>
+      <textarea class="np" spellcheck="false" aria-label="Notepad">${store.get('notepad', 'Type something. It sticks around until you clear your browser.')}</textarea>`,
+    onOpen: w => {
+      const ta = w.querySelector('.np'), title = w.querySelector('.win-title span');
+      ta.addEventListener('input', () => { store.set('notepad', ta.value); title.textContent = '*Untitled - Notepad'; });
+      ta.addEventListener('keydown', e => { if (e.key === 'Tab') { e.preventDefault(); ta.setRangeText('\t', ta.selectionStart, ta.selectionEnd, 'end'); ta.dispatchEvent(new Event('input')); } });
+      ta.focus();
+    },
+  },
   github:   { title: 'GitHub',   icon: 'github',   url: CONFIG.socials.github },
   x:        { title: 'X',        icon: 'x',        url: CONFIG.socials.x },
   linkedin: { title: 'LinkedIn', icon: 'linkedin', url: CONFIG.socials.linkedin },
+  medium:   { title: 'Medium',   icon: 'medium',   url: CONFIG.socials.medium },
+  instagram:{ title: 'Instagram',icon: 'instagram',url: CONFIG.socials.instagram },
   email:    { title: 'E-mail',   icon: 'email',    url: `mailto:${CONFIG.email}` },
 };
 
@@ -316,14 +334,14 @@ $('#reboot').onclick = e => { e.preventDefault(); location.reload(); };
 
 /* =========================== DESKTOP ICONS =========================== */
 const DESKTOP = [
-  'about', 'claudepoker', 'askpaxo', 'gta', '-', 'github', 'x', 'linkedin', 'email', '-', 'winamp', 'display', 'recycle',
+  'about', 'claudepoker', 'askpaxo', 'gta', '-', 'github', 'x', 'linkedin', 'medium', 'instagram', 'email', '-', 'winamp', 'notepad', 'display', 'recycle',
 ];
 function renderIcons() {
   const box = $('#icons');
   for (const id of DESKTOP) {
     if (id === '-') { box.appendChild(el('div', 'icon spacer')); continue; }
     const app = APPS[id];
-    const n = el('div', 'icon', `${ICONS[app.icon]}<span>${app.title}</span>`);
+    const n = el('div', 'icon', `${ICONS[app.icon]}<span>${app.label || app.title}</span>`);
     n.tabIndex = 0; n.dataset.id = id;
     n.addEventListener('click', () => { document.querySelectorAll('.icon.sel').forEach(i => i.classList.remove('sel')); n.classList.add('sel'); if (isTouch) WM.open(id); });
     n.addEventListener('dblclick', () => WM.open(id));
@@ -367,9 +385,9 @@ const Taskbar = {
 const StartMenu = {
   node: $('#startmenu'), btn: $('#start-btn'),
   init() {
-    const item = (id, sub, extra = '') => { const a = APPS[id]; return `<a class="sm-item ${extra}" href="${a.url || '#'}" data-id="${id}" ${a.url ? 'target="_blank" rel="noopener"' : ''}>${ICONS[a.icon]}<div><b>${a.title}</b>${sub ? `<small>${sub}</small>` : ''}</div></a>`; };
-    $('#sm-left').innerHTML = PROJECTS.map(p => item(p.id, p.tag)).join('') + '<div class="sm-sep"></div>' + item('winamp', '90s rock, on repeat') + item('gta', 'Vice City, in the browser') + item('about', 'Who is this guy');
-    $('#sm-right').innerHTML = item('github', '', 'bold') + item('x', '', 'bold') + item('linkedin', '', 'bold') + item('email', '', 'bold') + '<div class="sm-sep"></div>' + item('display') + item('recycle') +
+    const item = (id, sub, extra = '') => { const a = APPS[id]; return `<a class="sm-item ${extra}" href="${a.url || '#'}" data-id="${id}" ${a.url ? 'target="_blank" rel="noopener"' : ''}>${ICONS[a.icon]}<div><b>${a.label || a.title}</b>${sub ? `<small>${sub}</small>` : ''}</div></a>`; };
+    $('#sm-left').innerHTML = PROJECTS.map(p => item(p.id, p.tag)).join('') + '<div class="sm-sep"></div>' + item('winamp', '90s rock, on repeat') + item('gta', 'Vice City, in the browser') + item('notepad', 'Scratch space') + item('about', 'Who is this guy');
+    $('#sm-right').innerHTML = item('github', '', 'bold') + item('x', '', 'bold') + item('linkedin', '', 'bold') + item('medium', '', 'bold') + item('instagram', '', 'bold') + item('email', '', 'bold') + '<div class="sm-sep"></div>' + item('display') + item('recycle') +
       `<div class="sm-sep"></div><a class="sm-item" href="${CONFIG.siteRepo}" target="_blank" rel="noopener">${ICONS.folder}<div><b>Source of this site</b></div></a>`;
     this.node.addEventListener('click', e => {
       const a = e.target.closest('.sm-item'); if (!a) return;
