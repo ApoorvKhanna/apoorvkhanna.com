@@ -65,6 +65,18 @@ const PROJECTS = [
     body: `<p>Give Crayon your product's URL and it draws your market on a single hand-drawn board: live <b>threads</b> on X, Reddit and LinkedIn you can jump into, ~30 <b>people</b> worth reaching with a profile to reach them on, and <b>signals</b> — competitor moves, partnership openings, fundraising news.</p>
       <ul><li>The link opens the board for vaaya.ai</li><li>Search, social and news data via Vaaya (Exa, Tavily, Apify under the hood)</li><li>Zero-dependency Node, crayon-on-paper UI</li></ul>`,
   },
+  {
+    id: 'jobhunter', name: 'Job Hunter', url: 'https://job-hunter-in.vercel.app', icon: 'jobhunter',
+    tag: 'Find jobs that fit. Know who to contact.',
+    body: `<p>Upload your resume and Job Hunter suggests the titles to search, finds openings posted in the last two weeks, names the hiring managers and recruiters at each company, looks up their email and drafts the note. Every step is priced in rupees and charged only when it comes through.</p>
+      <ul><li>Google sign-in, ₹20 to start, UPI to add more</li><li>Jobs, contacts and drafts saved to your account</li><li>Built on Vaaya: job feeds, contact lookups and the drafting model all bill one balance</li></ul>`,
+  },
+  {
+    id: 'hastrekha', name: 'Hastrekha', url: 'https://hastrekha-in.vercel.app', icon: 'hastrekha',
+    tag: 'Your hand has been keeping notes.',
+    body: `<p>Open your palm to the camera. Hastrekha lines it up against an outline, takes the photo itself, and reads what the lines say. Go deeper with the full hand report, or cast a janam patri from your date, time and place of birth: a real sidereal chart, read planet by planet.</p>
+      <ul><li>Quick reading ₹11, full hand scan ₹51, janam patri ₹31</li><li>Real planetary positions from an ephemeris, Lahiri ayanamsa</li><li>The reading model runs on Vaaya; for reflection and enjoyment</li></ul>`,
+  },
 ];
 
 const PAINTINGS = [
@@ -115,6 +127,8 @@ const ICONS = {
   email: `<svg viewBox="0 0 48 48"><rect x="4" y="11" width="40" height="27" rx="3" fill="#fff" stroke="#6b7ea8" stroke-width="2"/><path d="M5 13l19 14 19-14" fill="#e9eefb" stroke="#6b7ea8" stroke-width="2" stroke-linejoin="round"/><path d="M5 37l14-12M43 37L29 25" fill="none" stroke="#6b7ea8" stroke-width="2"/></svg>`,
   winamp: `<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="21" fill="#f5a623" stroke="#8a5300" stroke-width="1.5"/><path d="M27 6l-12 21h8l-3 15 12-22h-8z" fill="#111"/></svg>`,
   pocketamp: `<svg viewBox="0 0 48 48"><rect x="12" y="2" width="24" height="44" rx="4" fill="#f7f7f5" stroke="#9a9a94" stroke-width="1.5"/><rect x="15" y="5.5" width="18" height="14" rx="1.5" fill="#9bbc0f" stroke="#2a2f3a" stroke-width="1.5"/><path d="M18 10h6M18 13.5h9" stroke="#0f380f" stroke-width="1.4" stroke-linecap="round"/><path d="M16.5 16.8h15" stroke="#0f380f" stroke-width="1" opacity=".45"/><circle cx="24" cy="32.5" r="8.5" fill="#eeeeec" stroke="#c9c9c3" stroke-width="1.2"/><circle cx="24" cy="32.5" r="3.2" fill="#fdfdfc" stroke="#c9c9c3"/><g fill="#a8a8a2"><path d="M22.5 26.4h3l-1.5-1.8z"/><path d="M22.5 38.6h3l-1.5 1.8z"/><path d="M18.2 31v3l-1.8-1.5z"/><path d="M29.8 31v3l1.8-1.5z"/></g></svg>`,
+  jobhunter: `<svg viewBox="0 0 48 48"><rect x="5" y="14" width="38" height="26" rx="3" fill="#2f4d8c" stroke="#1b2f5a" stroke-width="1.5"/><path d="M18 14v-4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v4" fill="none" stroke="#1b2f5a" stroke-width="2"/><rect x="5" y="22" width="38" height="4" fill="#1b2f5a" opacity=".55"/><rect x="21" y="20" width="6" height="7" rx="1" fill="#f4c542" stroke="#8a6a12"/><circle cx="34" cy="32" r="6" fill="#fff" stroke="#1b2f5a" stroke-width="2"/><path d="M38.5 36.5L44 42" stroke="#1b2f5a" stroke-width="3" stroke-linecap="round"/></svg>`,
+  hastrekha: `<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#0f1e5a"/><path d="M20 45c-4 0-7-3-7-7l-1-12c-1-4-2-7-3-10-1-3 1-4 3-3s2 3 3 5l1 6V13c0-2 1-3 3-3s3 1 3 3v12l1-17c0-2 1-3 3-3s3 1 3 3v17l1-14c0-2 1-3 3-3s3 1 3 3v15l2-10c0-2 2-3 3-2 2 0 3 2 2 4l-3 16c-1 6-4 10-9 12-3 1-7 1-11 0z" fill="#f4d9a8" stroke="#c9a15a" stroke-width="1"/><path d="M18 40c3-6 5-11 6-16M15 30c5-1 10-3 15-5M16 34c5-1 10-2 14-4" fill="none" stroke="#b5732a" stroke-width="1.2" stroke-linecap="round"/><circle cx="37" cy="10" r="1.6" fill="#ffd56a"/><circle cx="10" cy="14" r="1.2" fill="#ffd56a"/><circle cx="40" cy="20" r="1" fill="#ffd56a"/></svg>`,
   meme: `<svg viewBox="0 0 48 48"><rect x="4" y="5" width="40" height="38" rx="3" fill="#f2efe6" stroke="#15140f" stroke-width="2"/><path d="M4 8a3 3 0 0 1 3-3h34a3 3 0 0 1 3 3v8H4z" fill="#c8232a"/><text x="24" y="35" text-anchor="middle" font-family="Impact, Arial Black, sans-serif" font-size="15" fill="#fff" stroke="#15140f" stroke-width="1.3" paint-order="stroke">MEME</text><text x="24" y="14" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="6" fill="#fff" letter-spacing=".5">SOMMELIER</text></svg>`,
   recycle: `<svg viewBox="0 0 48 48"><path d="M10 15h28l-3 27H13z" fill="#cfe3f5" fill-opacity=".85" stroke="#4a7ab5" stroke-width="2"/><rect x="8" y="10.5" width="32" height="5" rx="2" fill="#7fb0e0" stroke="#4a7ab5" stroke-width="1.5"/><path d="M18 20v18M24 20v18M30 20v18" stroke="#4a7ab5" stroke-width="2"/><path d="M19 10l2-4h6l2 4" fill="none" stroke="#4a7ab5" stroke-width="2"/><path d="M16 26l5-3-2 5M32 26l-5-3 2 5" fill="none" stroke="#3c9a3c" stroke-width="1.5"/></svg>`,
   display: `<svg viewBox="0 0 48 48"><rect x="5" y="7" width="38" height="27" rx="2" fill="#d4d0c8" stroke="#555" stroke-width="2"/><rect x="8" y="10" width="32" height="21" fill="#3a6ea5"/><path d="M8 31l32-21v21z" fill="#5e94d1"/><rect x="18" y="36" width="12" height="4" fill="#888"/><rect x="13" y="40" width="22" height="3" rx="1" fill="#666"/></svg>`,
@@ -404,7 +418,7 @@ $('#reboot').onclick = e => { e.preventDefault(); location.reload(); };
 
 /* =========================== DESKTOP ICONS =========================== */
 const DESKTOP = [
-  { label: 'Work',    ids: ['about', 'claudepoker', 'askpaxo', 'saul', 'crayon', 'calendar'] },
+  { label: 'Work',    ids: ['about', 'claudepoker', 'askpaxo', 'saul', 'crayon', 'jobhunter', 'hastrekha', 'calendar'] },
   { label: 'Socials', ids: ['github', 'x', 'linkedin', 'medium', 'instagram', 'email'] },
   { label: 'Goodies', ids: ['winamp', 'pocketamp', 'meme', 'gta', 'notepad', 'terminal', 'display', 'recycle'] },
 ];
