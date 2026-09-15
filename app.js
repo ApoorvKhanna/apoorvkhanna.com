@@ -639,7 +639,10 @@ const StartMenu = {
   node: $('#startmenu'), btn: $('#start-btn'),
   init() {
     const item = (id, sub, extra = '') => { const a = APPS[id]; return `<a class="sm-item ${extra}" href="${a.url || '#'}" data-id="${id}" ${a.url ? 'target="_blank" rel="noopener"' : ''}>${ICONS[a.icon]}<div><b>${a.label || a.title}</b>${sub ? `<small>${sub}</small>` : ''}</div></a>`; };
-    $('#sm-left').innerHTML = PROJECTS.map(p => item(p.id, p.tag)).join('') + '<div class="sm-sep"></div>' + item('winamp', '90s rock, on repeat') + item('pocketamp', 'An iPod for your Mac — free download') + item('meme', 'Four memes for any situation, one always desi') + item('gta', 'Vice City, in the browser') + item('notepad', 'Scratch space') + item('terminal', 'Type ai "…" and watch') + item('about', 'Who is this guy') + '<div class="sm-sep"></div>' + item('calendar', 'Book 30 mins — how AI can help your company');
+    // The Start menu shows the three headline products; the rest live on
+    // the desktop and in the About window.
+    const START_PROJECTS = ['vaaya', 'claudepoker', 'askpaxo'];
+    $('#sm-left').innerHTML = PROJECTS.filter(p => START_PROJECTS.includes(p.id)).map(p => item(p.id, p.tag)).join('') + '<div class="sm-sep"></div>' + item('winamp', '90s rock, on repeat') + item('pocketamp', 'An iPod for your Mac — free download') + item('meme', 'Four memes for any situation, one always desi') + item('gta', 'Vice City, in the browser') + item('notepad', 'Scratch space') + item('terminal', 'Type ai "…" and watch') + item('about', 'Who is this guy') + '<div class="sm-sep"></div>' + item('calendar', 'Book 30 mins — how AI can help your company');
     $('#sm-right').innerHTML = item('github', '', 'bold') + item('x', '', 'bold') + item('linkedin', '', 'bold') + item('medium', '', 'bold') + item('instagram', '', 'bold') + item('email', '', 'bold') + '<div class="sm-sep"></div>' + item('display') + item('arrange') + item('recycle') +
       `<div class="sm-sep"></div><a class="sm-item" href="${CONFIG.siteRepo}" target="_blank" rel="noopener">${ICONS.folder}<div><b>Source of this site</b></div></a>`;
     this.node.addEventListener('click', e => {
