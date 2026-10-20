@@ -132,6 +132,7 @@ a { color: inherit; }
 #note .pin::after { content: ""; position: absolute; left: 9px; top: 16px; width: 2px; height: 12px; background: linear-gradient(#999, #333); }
 #note strong { display: block; font-size: 20px; margin-bottom: 4px; }
 #note p { margin: 0 0 8px; }
+#note [data-open-note] + [data-open-note] { margin-top: 12px; }
 #note a { display: inline-block; font-weight: 700; color: #1a4fb3; text-decoration: none; border-bottom: 2px solid rgba(26,79,179,.5); cursor: pointer; }
 #note a:hover { border-bottom-color: #1a4fb3; }
 #note small { display: block; margin-top: 8px; font-size: 11px; color: #8a7200; }

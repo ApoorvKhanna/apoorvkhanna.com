@@ -42,6 +42,12 @@ const PROJECTS = [
       <ul><li>Works from Claude Code, Codex, ChatGPT and any MCP client</li><li>Recipes for full GTM loops, product demos and market research</li><li>One bill, every service</li></ul>`,
   },
   {
+    id: 'openrecipe', name: 'OpenRecipe', url: 'https://openrecipe.io', icon: 'openrecipe',
+    tag: 'A marketplace for agent recipes and workflows.',
+    body: `<p>OpenRecipe is where finished workflows live. A recipe is a job done end to end — turn one blog post into a LinkedIn post, an X thread and an explainer video; answer calls about your website; hunt jobs and draft the note — that you run from the page or hand to your agent.</p>
+      <ul><li>Recipes for your role, your industry and the work ahead</li><li>Thousands of tools behind them, one balance to pay for all of it</li><li>Runs on Vaaya</li></ul>`,
+  },
+  {
     id: 'claudepoker', name: 'ClaudePoker', url: 'https://claudepoker.com', icon: 'claudepoker',
     tag: 'Bring your agent and your strategies to the table.',
     body: `<p>A poker room where AI agents play each other. Register your agent over the API, ship a strategy, and watch it grind Texas Hold'em against everyone else's.</p>
@@ -118,6 +124,7 @@ const PLAYLIST = [
 /* =========================== ICONS (inline SVG) =========================== */
 const ICONS = {
   vaaya: `<svg viewBox="0 0 48 48"><defs><linearGradient id="gv" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8b6cff"/><stop offset="1" stop-color="#2a1b8f"/></linearGradient></defs><rect x="4" y="4" width="40" height="40" rx="10" fill="url(#gv)"/><path d="M14 15l10 19 10-19" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="37" r="2.6" fill="#ffd166"/></svg>`,
+  openrecipe: `<svg viewBox="0 0 48 48"><rect x="4" y="4" width="40" height="40" rx="10" fill="#fbfcf9" stroke="#b9c7b4" stroke-width="1.5"/><path d="M11 11h26L24 29z" fill="#111"/><rect x="21" y="31" width="6" height="6" fill="#7fd08a"/></svg>`,
   claudepoker: `<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="21" fill="#c8102e"/><circle cx="24" cy="24" r="19" fill="none" stroke="#fff" stroke-width="5" stroke-dasharray="7.5 7.4"/><circle cx="24" cy="24" r="13.5" fill="#fff"/><path d="M24 13.5c-4 6-8.5 8-8.5 12.5a4.6 4.6 0 0 0 7.6 3.3c-.3 2.2-1 3.6-2.1 4.4h6c-1.1-.8-1.8-2.2-2.1-4.4a4.6 4.6 0 0 0 7.6-3.3c0-4.5-4.5-6.5-8.5-12.5z" fill="#111"/></svg>`,
   askpaxo: `<svg viewBox="0 0 48 48"><path d="M6 23L24 8l18 15" fill="none" stroke="#1d4ed8" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/><path d="M11 21v19h26V21" fill="#e6efff" stroke="#1d4ed8" stroke-width="3"/><rect x="20" y="27" width="8" height="13" fill="#1d4ed8"/><circle cx="34" cy="33" r="7" fill="#fff" stroke="#f59e0b" stroke-width="3"/><path d="M39 38l6 6" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/></svg>`,
   about: `<svg viewBox="0 0 48 48"><defs><clipPath id="gab"><circle cx="24" cy="24" r="21"/></clipPath></defs><circle cx="24" cy="24" r="22" fill="#fff"/><image href="photo.jpg" x="3" y="3" width="42" height="42" clip-path="url(#gab)" preserveAspectRatio="xMidYMid slice"/><circle cx="24" cy="24" r="21.5" fill="none" stroke="#fff" stroke-width="1.5"/></svg>`,
@@ -301,7 +308,7 @@ const APPS = {
         <img class="avatar" src="photo.jpg" alt="${CONFIG.name}" width="512" height="512">
         <h1>${CONFIG.name}</h1>
         <p>I build software for AI agents, and for the people who put them to work.</p>
-        <p>Right now that's <a href="#" data-open="vaaya">Vaaya</a> — credit for your agents, so they can buy the services they need without you handing out API keys — plus <a href="#" data-open="claudepoker">ClaudePoker</a>, where agents play each other at Hold'em, and <a href="#" data-open="askpaxo">AskPaxo</a>, which finds you a flat so you don't have to.</p>
+        <p>Right now that's <a href="#" data-open="vaaya">Vaaya</a> — credit for your agents, so they can buy the services they need without you handing out API keys — and <a href="#" data-open="openrecipe">OpenRecipe</a>, a marketplace for the recipes and workflows they run. Plus <a href="#" data-open="claudepoker">ClaudePoker</a>, where agents play each other at Hold'em, and <a href="#" data-open="askpaxo">AskPaxo</a>, which finds you a flat so you don't have to.</p>
         <h2>Why does this look like 2003?</h2>
         <p>Because Windows XP and Winamp were the last time computers were unambiguously fun. The paintings rotate; the music is the best of the 90s; the Recycle Bin is not empty.</p>
         <h2>Say hi</h2>
@@ -418,7 +425,7 @@ $('#reboot').onclick = e => { e.preventDefault(); location.reload(); };
 
 /* =========================== DESKTOP ICONS =========================== */
 const DESKTOP = [
-  { label: 'Work',    ids: ['about', 'claudepoker', 'askpaxo', 'saul', 'crayon', 'jobhunter', 'ninerooms', 'calendar'] },
+  { label: 'Work',    ids: ['about', 'openrecipe', 'claudepoker', 'askpaxo', 'saul', 'crayon', 'jobhunter', 'ninerooms', 'calendar'] },
   { label: 'Socials', ids: ['github', 'x', 'linkedin', 'medium', 'instagram', 'email'] },
   { label: 'Goodies', ids: ['winamp', 'pocketamp', 'meme', 'gta', 'notepad', 'terminal', 'display', 'recycle'] },
 ];
@@ -614,7 +621,7 @@ function initNote() {
   };
   place(); addEventListener('resize', place);
   makeDraggable(n, n, null, () => n.dataset.moved = 1);
-  n.addEventListener('dblclick', e => { if (!e.target.closest('a')) WM.open('vaaya'); });
+  n.addEventListener('dblclick', e => { const p = e.target.closest('[data-open-note]'); if (p && !e.target.closest('a')) WM.open(p.dataset.openNote); });
 }
 
 /* =========================== TASKBAR / START MENU =========================== */
@@ -639,9 +646,9 @@ const StartMenu = {
   node: $('#startmenu'), btn: $('#start-btn'),
   init() {
     const item = (id, sub, extra = '') => { const a = APPS[id]; return `<a class="sm-item ${extra}" href="${a.url || '#'}" data-id="${id}" ${a.url ? 'target="_blank" rel="noopener"' : ''}>${ICONS[a.icon]}<div><b>${a.label || a.title}</b>${sub ? `<small>${sub}</small>` : ''}</div></a>`; };
-    // The Start menu shows the three headline products; the rest live on
+    // The Start menu shows the headline products; the rest live on
     // the desktop and in the About window.
-    const START_PROJECTS = ['vaaya', 'claudepoker', 'askpaxo'];
+    const START_PROJECTS = ['vaaya', 'openrecipe', 'claudepoker', 'askpaxo'];
     $('#sm-left').innerHTML = PROJECTS.filter(p => START_PROJECTS.includes(p.id)).map(p => item(p.id, p.tag)).join('') + '<div class="sm-sep"></div>' + item('winamp', '90s rock, on repeat') + item('pocketamp', 'An iPod for your Mac — free download') + item('meme', 'Four memes for any situation, one always desi') + item('gta', 'Vice City, in the browser') + item('notepad', 'Scratch space') + item('terminal', 'Type ai "…" and watch') + item('about', 'Who is this guy') + '<div class="sm-sep"></div>' + item('calendar', 'Book 30 mins — how AI can help your company');
     $('#sm-right').innerHTML = item('github', '', 'bold') + item('x', '', 'bold') + item('linkedin', '', 'bold') + item('medium', '', 'bold') + item('instagram', '', 'bold') + item('email', '', 'bold') + '<div class="sm-sep"></div>' + item('display') + item('arrange') + item('recycle') +
       `<div class="sm-sep"></div><a class="sm-item" href="${CONFIG.siteRepo}" target="_blank" rel="noopener">${ICONS.folder}<div><b>Source of this site</b></div></a>`;
