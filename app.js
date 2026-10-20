@@ -271,7 +271,7 @@ const WM = {
 function makeDraggable(handle, node, locked, onMove) {
   let sx, sy, ox, oy, dragging = false;
   handle.addEventListener('pointerdown', e => {
-    if (e.button !== 0 || e.target.closest('b') || locked?.()) return;
+    if (e.button !== 0 || e.target.closest('b, a') || locked?.()) return;  // links stay clickable: pointer capture would swallow their click
     dragging = true; handle.setPointerCapture(e.pointerId);
     sx = e.clientX; sy = e.clientY; ox = node.offsetLeft; oy = node.offsetTop;
     e.preventDefault();
@@ -621,7 +621,8 @@ function initNote() {
   };
   place(); addEventListener('resize', place);
   makeDraggable(n, n, null, () => n.dataset.moved = 1);
-  n.addEventListener('dblclick', e => { const p = e.target.closest('[data-open-note]'); if (p && !e.target.closest('a')) WM.open(p.dataset.openNote); });
+  // Pointer capture retargets the dblclick to the note itself, so find the entry under the pointer.
+  n.addEventListener('dblclick', e => { const t = document.elementFromPoint(e.clientX, e.clientY); const p = t?.closest('[data-open-note]'); if (p && !t.closest('a')) WM.open(p.dataset.openNote); });
 }
 
 /* =========================== TASKBAR / START MENU =========================== */
