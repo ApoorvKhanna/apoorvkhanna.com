@@ -83,6 +83,18 @@ const PROJECTS = [
     body: `<p>Hotel Rajdoot, above Bansipur Junction, 1987. The owner is dead behind a locked door, and whoever did it holds a ticket for the nine o'clock train. You get 27 rooms, seven suspects and a real clock. There are no dialogue menus: you type what you ask, where you look and who you accuse, in your own words.</p>
       <ul><li>Every line is authored. Jev, TypeSafe's decision model, only referees what you meant. It never writes a word of the story</li><li>Nobody volunteers anything: vague questions get deflections, sharp ones catch lies</li><li>An accusation needs a why, a how and a when, or the inspector lets him board</li></ul>`,
   },
+  {
+    id: 'dailywars', name: 'Daily Wars', url: 'https://dailywars.lol', icon: 'dailywars',
+    tag: 'One page. One winner a day. Everyone else bids for tomorrow.',
+    body: `<p>One site gets the whole page from noon to noon, Pacific time. All day, an open auction runs for tomorrow: bids open at $1 and go up at least $1, and the top bid and who placed it are always on the bar.</p>
+      <ul><li>Bidding closes at 10 AM; a bid in the last 5 minutes adds 5 more</li><li>Only the winner pays, charged at close. Losing bids never are</li><li>The new site goes live at noon sharp</li></ul>`,
+  },
+  {
+    id: 'hijackthis', name: 'Hijack This', url: 'https://hijackthis.lol', icon: 'hijackthis',
+    tag: 'One page, one product. Anyone can take it from you for 10% more.',
+    body: `<p>Pay once to take the page, then put any site you like on it: paste the link, preview it, publish. It stays up until someone pays at least 10% more than you did, and what they paid becomes the price to beat.</p>
+      <ul><li>No clock and no refund: you hold the page until someone takes it</li><li>Every takeover raises the price of the next one</li><li>Links are checked before they go live. Pay and don't publish within 30 minutes and you get a full refund</li></ul>`,
+  },
 ];
 
 const PAINTINGS = [
@@ -136,6 +148,8 @@ const ICONS = {
   pocketamp: `<svg viewBox="0 0 48 48"><rect x="12" y="2" width="24" height="44" rx="4" fill="#f7f7f5" stroke="#9a9a94" stroke-width="1.5"/><rect x="15" y="5.5" width="18" height="14" rx="1.5" fill="#9bbc0f" stroke="#2a2f3a" stroke-width="1.5"/><path d="M18 10h6M18 13.5h9" stroke="#0f380f" stroke-width="1.4" stroke-linecap="round"/><path d="M16.5 16.8h15" stroke="#0f380f" stroke-width="1" opacity=".45"/><circle cx="24" cy="32.5" r="8.5" fill="#eeeeec" stroke="#c9c9c3" stroke-width="1.2"/><circle cx="24" cy="32.5" r="3.2" fill="#fdfdfc" stroke="#c9c9c3"/><g fill="#a8a8a2"><path d="M22.5 26.4h3l-1.5-1.8z"/><path d="M22.5 38.6h3l-1.5 1.8z"/><path d="M18.2 31v3l-1.8-1.5z"/><path d="M29.8 31v3l1.8-1.5z"/></g></svg>`,
   jobhunter: `<svg viewBox="0 0 48 48"><rect x="5" y="14" width="38" height="26" rx="3" fill="#2f4d8c" stroke="#1b2f5a" stroke-width="1.5"/><path d="M18 14v-4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v4" fill="none" stroke="#1b2f5a" stroke-width="2"/><rect x="5" y="22" width="38" height="4" fill="#1b2f5a" opacity=".55"/><rect x="21" y="20" width="6" height="7" rx="1" fill="#f4c542" stroke="#8a6a12"/><circle cx="34" cy="32" r="6" fill="#fff" stroke="#1b2f5a" stroke-width="2"/><path d="M38.5 36.5L44 42" stroke="#1b2f5a" stroke-width="3" stroke-linecap="round"/></svg>`,
   ninerooms: `<svg viewBox="0 0 48 48"><rect x="3" y="3" width="42" height="42" rx="7" fill="#344a80"/><circle cx="24" cy="19" r="12.5" fill="#f3ebdd" stroke="#1d2b52" stroke-width="1.5"/><path d="M24 8.5v2.5M24 27v2.5M13.5 19H16M32 19h2.5" stroke="#1d2b52" stroke-width="1.4" stroke-linecap="round"/><path d="M24 19v-8" stroke="#1d2b52" stroke-width="2" stroke-linecap="round"/><path d="M24 19h-7" stroke="#ee6852" stroke-width="2.4" stroke-linecap="round"/><circle cx="24" cy="19" r="1.7" fill="#1d2b52"/><path d="M7 41.5h34" stroke="#f3ebdd" stroke-width="1.6" stroke-linecap="round"/><rect x="11" y="33.5" width="19" height="6" rx="1.6" fill="#ee6852"/><rect x="28" y="31" width="8" height="8.5" rx="1" fill="#ee6852"/><rect x="30" y="32.8" width="4" height="3" fill="#ffd428"/><rect x="13.5" y="30.5" width="3" height="3.5" fill="#ffd428"/><circle cx="16" cy="40" r="2" fill="#1d2b52" stroke="#f3ebdd" stroke-width=".8"/><circle cx="23" cy="40" r="2" fill="#1d2b52" stroke="#f3ebdd" stroke-width=".8"/><circle cx="32" cy="40" r="2" fill="#1d2b52" stroke="#f3ebdd" stroke-width=".8"/></svg>`,
+  dailywars: `<svg viewBox="0 0 48 48"><rect x="3" y="3" width="42" height="42" rx="7" fill="#1f1235"/><path d="M15 12H9a5 5 0 0 0 6 7M33 12h6a5 5 0 0 1-6 7" fill="none" stroke="#f5c542" stroke-width="2.5"/><path d="M15 8h18v11a9 9 0 0 1-18 0z" fill="#f5c542" stroke="#a87a10" stroke-width="1.5"/><path d="M21 27h6v5h-6z" fill="#d9a520"/><rect x="14" y="32" width="20" height="5" rx="1.5" fill="#f5c542" stroke="#a87a10" stroke-width="1.2"/><text x="24" y="21" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="10" fill="#7a5200">1</text><text x="24" y="43" text-anchor="middle" font-family="Tahoma, Arial, sans-serif" font-weight="700" font-size="5" fill="#ff7a7a">DAILY</text></svg>`,
+  hijackthis: `<svg viewBox="0 0 48 48"><rect x="4" y="11" width="40" height="32" rx="3" fill="#f4f4f0" stroke="#55555a" stroke-width="1.5"/><path d="M4 14a3 3 0 0 1 3-3h34a3 3 0 0 1 3 3v4H4z" fill="#2b2b33"/><circle cx="9" cy="14.5" r="1.3" fill="#ff5f57"/><circle cx="13" cy="14.5" r="1.3" fill="#febc2e"/><path d="M20 40V5" stroke="#2b2b33" stroke-width="2.5" stroke-linecap="round"/><path d="M21 5h18l-4 6 4 6H21z" fill="#e0262d"/><text x="29.5" y="13.2" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="5.5" fill="#fff">+10%</text></svg>`,
   meme: `<svg viewBox="0 0 48 48"><rect x="4" y="5" width="40" height="38" rx="3" fill="#f2efe6" stroke="#15140f" stroke-width="2"/><path d="M4 8a3 3 0 0 1 3-3h34a3 3 0 0 1 3 3v8H4z" fill="#c8232a"/><text x="24" y="35" text-anchor="middle" font-family="Impact, Arial Black, sans-serif" font-size="15" fill="#fff" stroke="#15140f" stroke-width="1.3" paint-order="stroke">MEME</text><text x="24" y="14" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="6" fill="#fff" letter-spacing=".5">SOMMELIER</text></svg>`,
   recycle: `<svg viewBox="0 0 48 48"><path d="M10 15h28l-3 27H13z" fill="#cfe3f5" fill-opacity=".85" stroke="#4a7ab5" stroke-width="2"/><rect x="8" y="10.5" width="32" height="5" rx="2" fill="#7fb0e0" stroke="#4a7ab5" stroke-width="1.5"/><path d="M18 20v18M24 20v18M30 20v18" stroke="#4a7ab5" stroke-width="2"/><path d="M19 10l2-4h6l2 4" fill="none" stroke="#4a7ab5" stroke-width="2"/><path d="M16 26l5-3-2 5M32 26l-5-3 2 5" fill="none" stroke="#3c9a3c" stroke-width="1.5"/></svg>`,
   display: `<svg viewBox="0 0 48 48"><rect x="5" y="7" width="38" height="27" rx="2" fill="#d4d0c8" stroke="#555" stroke-width="2"/><rect x="8" y="10" width="32" height="21" fill="#3a6ea5"/><path d="M8 31l32-21v21z" fill="#5e94d1"/><rect x="18" y="36" width="12" height="4" fill="#888"/><rect x="13" y="40" width="22" height="3" rx="1" fill="#666"/></svg>`,
@@ -161,6 +175,8 @@ const $ = (s, r = document) => r.querySelector(s);
 const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
 const isTouch = matchMedia('(pointer: coarse)').matches;
 const isNarrow = () => innerWidth <= 720;
+// Phones in either orientation. Winamp starts closed and silent there.
+const isPhone = () => isNarrow() || (isTouch && Math.min(innerWidth, innerHeight) <= 500);
 const fmt = s => { s = Math.max(0, Math.floor(s || 0)); return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; };
 const store = { get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch { return d; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} } };
 
@@ -425,7 +441,7 @@ $('#reboot').onclick = e => { e.preventDefault(); location.reload(); };
 
 /* =========================== DESKTOP ICONS =========================== */
 const DESKTOP = [
-  { label: 'Work',    ids: ['about', 'openrecipe', 'claudepoker', 'askpaxo', 'saul', 'crayon', 'jobhunter', 'ninerooms', 'calendar'] },
+  { label: 'Work',    ids: ['about', 'openrecipe', 'claudepoker', 'askpaxo', 'saul', 'crayon', 'jobhunter', 'ninerooms', 'dailywars', 'hijackthis', 'calendar'] },
   { label: 'Socials', ids: ['github', 'x', 'linkedin', 'medium', 'instagram', 'email'] },
   { label: 'Goodies', ids: ['winamp', 'pocketamp', 'meme', 'gta', 'notepad', 'terminal', 'display', 'recycle'] },
 ];
@@ -750,6 +766,7 @@ const Winamp = {
 
   init() {
     this.layout();
+    if (isPhone()) { this.open = false; this.group.classList.add('min'); }   // one tap away on the desktop icon
     addEventListener('resize', () => this.layout(true));
     // window group drag (any Winamp title bar moves the docked group, like the real thing)
     this.group.querySelectorAll('.wa-title').forEach(t => makeDraggable(t, this.group));
@@ -942,15 +959,17 @@ function boot() {
   const go = () => {
     if (b.classList.contains('fade')) return;
     b.classList.add('fade'); chime();
-    Winamp.play();                 // user gesture → autoplay allowed
-    WM.focus('winamp');
+    if (!isPhone()) {
+      Winamp.play();               // user gesture → autoplay allowed
+      WM.focus('winamp');
+    }
     setTimeout(() => b.remove(), 700);
   };
   b.addEventListener('click', go);
   b.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') go(); });
   const q = new URLSearchParams(location.search);
   if (q.has('desktop')) {          // ?desktop skips the boot screen (no autoplay without a gesture); &open=about,vaaya &start for previews
-    b.remove(); WM.focus('winamp');
+    b.remove(); if (!isPhone()) WM.focus('winamp');
     (q.get('open') || '').split(',').filter(Boolean).forEach(id => WM.open(id));
     if (q.has('start')) StartMenu.toggle(true);
   }
