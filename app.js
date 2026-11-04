@@ -767,7 +767,7 @@ const Winamp = {
   init() {
     this.layout();
     if (isPhone()) { this.open = false; this.group.classList.add('min'); }   // one tap away on the desktop icon
-    addEventListener('resize', () => this.layout(true));
+    addEventListener('resize', () => { this.layout(true); if (this.open) this.fitOnScreen(); });
     // window group drag (any Winamp title bar moves the docked group, like the real thing)
     this.group.querySelectorAll('.wa-title').forEach(t => makeDraggable(t, this.group));
     this.group.addEventListener('pointerdown', () => WM.focus('winamp'), true);
@@ -825,7 +825,22 @@ const Winamp = {
     this.group.dataset.placed = 1;
   },
   taskTitle() { const t = PLAYLIST[this.idx]; return this.playing ? `${t.artist} - ${t.title}` : 'Winamp'; },
-  show() { this.open = true; this.group.classList.remove('min'); WM.focus('winamp'); },
+  show() { this.open = true; this.group.classList.remove('min'); this.fitOnScreen(); WM.focus('winamp'); },
+  // Phones: the docked spot is below the sticky note, at the bottom of a long
+  // scrolling desktop. Open Winamp in the middle of what is on screen instead.
+  fitOnScreen() {
+    if (!isPhone()) return;
+    const p = this.group.offsetParent || document.body;
+    const view = p.clientHeight || innerHeight;
+    let h = this.group.getBoundingClientRect().height;
+    if (h > view - 16) {           // short screens: shrink to fit rather than run under the taskbar
+      const scale = parseFloat(this.group.style.getPropertyValue('--wa-scale')) || 1;
+      this.group.style.setProperty('--wa-scale', (scale * (view - 16) / h).toFixed(3));
+      h = this.group.getBoundingClientRect().height;
+    }
+    this.group.style.left = '8px';
+    this.group.style.top = Math.round((p.scrollTop || 0) + Math.max(8, (view - h) / 2)) + 'px';
+  },
   minimize() { this.group.classList.add('min'); if (WM.active === 'winamp') WM.active = null; Taskbar.render(); },
   close() { this.open = false; this.group.classList.add('min'); this.pause(); if (WM.active === 'winamp') WM.active = null; Taskbar.render(); },
   togglePlaylist(force) { const pl = $('#wa-pl'); const show = force ?? pl.classList.contains('hide'); pl.classList.toggle('hide', !show); $('#wa-pl-btn').classList.toggle('on', show); },

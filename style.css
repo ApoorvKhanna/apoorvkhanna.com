@@ -402,6 +402,10 @@ a { color: inherit; }
 .wa-btn-shade::after { left: 1px; right: 1px; top: 1px; height: 1px; background: #ddd; }
 .wa-btn-close::after { left: 1px; top: 1px; width: 5px; height: 5px; border: 1px solid #ddd; }
 .wa-title-btns b:hover { filter: brightness(1.4); }
+/* Touch: the 9px close buttons get a finger-sized tap area (the glyph uses ::after). */
+@media (pointer: coarse) {
+  .wa-title-btns .wa-btn-close::before { content: ""; position: absolute; inset: -9px -5px -9px -9px; }
+}
 
 .wa-clutter { position: absolute; left: 10px; top: 22px; display: flex; flex-direction: column; gap: 0; }
 .wa-clutter i { font-style: normal; font-size: 6px; line-height: 8px; width: 8px; text-align: center; color: #7a7a7a; }
