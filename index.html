@@ -13,7 +13,7 @@
 <link rel="preload" as="image" href="wallpapers/starry-night.jpg">
 <link rel="stylesheet" href="style.css">
 <meta name="google-site-verification" content="GZziDMmIRtOJwcJnJ-Dl3yV511KLEpWG6cCH_iW8Cz4">
-<!-- Google Analytics 4 (apoorvkhanna88@gmail.com, account "Apoorv projects", property apoorvkhanna.com). Live site only. -->
+<!-- Analytics (apoorvkhanna88@gmail.com): Google Analytics 4 (account "Apoorv projects", property apoorvkhanna.com) and PostHog. Live site only. -->
 <script>
 if (/(^|\.)apoorvkhanna\.com$/.test(location.hostname)) {
   var ga = document.createElement('script'); ga.async = true;
@@ -22,6 +22,16 @@ if (/(^|\.)apoorvkhanna\.com$/.test(location.hostname)) {
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date()); gtag('config', 'G-49PBFMX3LY');
+  // PostHog project "apoorvkhanna.com" (id 717612, organization "Apoorv Khanna"),
+  // through our own /ingest path (vercel.json) so ad blockers don't drop it.
+  var ph = document.createElement('script'); ph.async = true; ph.crossOrigin = 'anonymous';
+  ph.src = '/ingest/static/array.js';
+  ph.onload = function () {
+    window.posthog.init('phc_CrrqstuCmuSjjHwvFfFfGhsT3QLMqTXw6i2nUAo9JpXk', {
+      api_host: '/ingest', ui_host: 'https://us.posthog.com', defaults: '2026-01-30', capture_exceptions: true
+    });
+  };
+  document.head.appendChild(ph);
 }
 </script>
 </head>
