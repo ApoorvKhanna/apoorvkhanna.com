@@ -27,14 +27,14 @@
   ],
   "redirects": [
     {
-      "source": "/:path*",
+      "source": "/:path(.*)",
       "has": [
         {
           "type": "host",
           "value": "www.apoorvkhanna.com"
         }
       ],
-      "destination": "https://apoorvkhanna.com/:path*",
+      "destination": "https://apoorvkhanna.com/:path",
       "permanent": true
     }
   ]
