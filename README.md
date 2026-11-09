@@ -3,7 +3,7 @@
 A personal site that is a Windows XP desktop. No build step, no framework — `index.html`, `style.css`, `app.js`, and a folder of public-domain paintings.
 
 - **Wallpaper** rotates through eleven classic paintings (Wikimedia Commons, public domain) every 45s. Right-click the desktop → Properties to pick one or stop the rotation.
-- **Desktop icons** open XP-style windows for Vaaya, OpenRecipe, ClaudePoker and AskPaxo, an About Me explorer window, and links to GitHub / X / LinkedIn / email.
+- **Desktop icons** open XP-style windows for Vaaya, The Next Draft, ClaudePoker and AskPaxo, an About Me explorer window, and links to GitHub / X / LinkedIn / email.
 - **Winamp** (2.x skin, in CSS) plays 18 of the greatest 90s rock songs via the YouTube IFrame API. The video shows in the docked "Nullsoft Video" window; the playlist, seek bar, volume, shuffle and repeat all work.
 - Boot screen → click → startup chime → music starts (the click is the user gesture browsers need for autoplay).
 
